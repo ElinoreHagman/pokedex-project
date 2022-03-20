@@ -1,30 +1,25 @@
-# Getting Started with Create React App
+# Pokemon card collection
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I wanted to get more familiar with Typescript and GraphQL so I found a fun little Pokémon API that I could play around with.
 
-## Available Scripts
+### Stack
 
-In the project directory, you can run:
+- React
+- TypeScript
+- Node
+- GraphQL
+- Apollo Client
+- MUI
 
-### `npm start`
+### Resources
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project uses multiple external resources.
+| Resource | Link |
+| ------ | ------ |
+| Favware/graphql-pokemon | [https://github.com/favware/graphql-pokemon][1] |
+| Wikimedia/Pokémon types icons | [https://commons.wikimedia.org][2] |
+| Bulbapedia/Backgrounds | [https://bulbapedia.bulbagarden.net][3] |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[1]: https://github.com/favware/graphql-pokemon
+[2]: https://commons.wikimedia.org/wiki/Category:Pok%C3%A9mon_types_icons
+[3]: https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon-Amie_decorations#Wallpapers
