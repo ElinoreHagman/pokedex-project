@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
-import { PokemonType } from "../Fragments/TypeMatchupFragment";
+import { PokemonType } from "../Fragments/TypeMatchupFragments";
 
-export const getTypeMatchup = gql`
-  query ($types: [TypesEnum!]!) {
+export const GET_TYPE_MATCHUP = gql`
+  query getTypeMatchup($types: [TypesEnum!]!) {
     getTypeMatchup(types: $types) {
       attacking {
         ...PokemonType

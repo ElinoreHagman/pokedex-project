@@ -3819,6 +3819,16 @@ export type StrictTypedTypePolicies = {
 	}
 };
 export type TypedTypePolicies = StrictTypedTypePolicies & TypePolicies;
+export type PokemonBasicInfoFragmentFragment = { __typename: 'Pokemon', num: number, species: string, sprite: string, backSprite: string, shinySprite: string, shinyBackSprite: string, types: Array<string> };
+
+export type PokemonExtraInfoFragmentFragment = { __typename: 'Pokemon', color: string, evolutionLevel?: string, height: number, weight: number, gender: { __typename: 'Gender', female: string, male: string } };
+
+export type PokemonStatsFragmentFragment = { __typename: 'Pokemon', baseStats: { __typename: 'Stats', hp: number, attack: number, defense: number, specialattack: number, specialdefense: number, speed: number } };
+
+export type PokemonAbilitiesFragmentFragment = { __typename: 'Pokemon', abilities: { __typename: 'Abilities', first: string, hidden?: string, second?: string, special?: string } };
+
+export type PokemonTypeFragment = { __typename: 'Type', doubleEffectiveTypes: Array<string>, doubleResistedTypes: Array<string>, effectiveTypes: Array<string>, effectlessTypes: Array<string>, normalTypes: Array<string>, resistedTypes: Array<string> };
+
 export type GetAbilityFullQueryVariables = Exact<{
   ability: AbilitiesEnum;
 }>;
@@ -3841,14 +3851,6 @@ export type GetFuzzyAbilityQueryVariables = Exact<{
 
 
 export type GetFuzzyAbilityQuery = { __typename: 'Query', getFuzzyAbility: Array<{ __typename: 'Ability', desc?: string, isFieldAbility?: string, name: string, shortDesc: string }> };
-
-export type PokemonBasicInfoFragmentFragment = { __typename: 'Pokemon', num: number, species: string, sprite: string, backSprite: string, shinySprite: string, shinyBackSprite: string, types: Array<string> };
-
-export type PokemonExtraInfoFragmentFragment = { __typename: 'Pokemon', color: string, evolutionLevel?: string, height: number, weight: number, gender: { __typename: 'Gender', female: string, male: string } };
-
-export type PokemonStatsFragmentFragment = { __typename: 'Pokemon', baseStats: { __typename: 'Stats', hp: number, attack: number, defense: number, specialattack: number, specialdefense: number, speed: number } };
-
-export type PokemonAbilitiesFragmentFragment = { __typename: 'Pokemon', abilities: { __typename: 'Abilities', first: string, hidden?: string, second?: string, special?: string } };
 
 export type GetFuzzyMoveNameQueryVariables = Exact<{
   move: Scalars['String'];
@@ -3909,6 +3911,13 @@ export type GetAllPokemonSpeciesQueryVariables = Exact<{
 
 export type GetAllPokemonSpeciesQuery = { __typename: 'Query', getAllPokemonSpecies: Array<string> };
 
+export type GetTypeMatchupQueryVariables = Exact<{
+  types: Array<TypesEnum> | TypesEnum;
+}>;
+
+
+export type GetTypeMatchupQuery = { __typename: 'Query', getTypeMatchup: { __typename: 'TypeMatchup', attacking: { __typename: 'Type', doubleEffectiveTypes: Array<string>, doubleResistedTypes: Array<string>, effectiveTypes: Array<string>, effectlessTypes: Array<string>, normalTypes: Array<string>, resistedTypes: Array<string> }, defending: { __typename: 'Type', doubleEffectiveTypes: Array<string>, doubleResistedTypes: Array<string>, effectiveTypes: Array<string>, effectlessTypes: Array<string>, normalTypes: Array<string>, resistedTypes: Array<string> } } };
+
 export const namedOperations = {
   Query: {
     getAbilityFull: 'getAbilityFull',
@@ -3920,12 +3929,14 @@ export const namedOperations = {
     getFuzzyMoveWithFullData: 'getFuzzyMoveWithFullData',
     getPokemon: 'getPokemon',
     getPokemonByDexNumber: 'getPokemonByDexNumber',
-    getAllPokemonSpecies: 'getAllPokemonSpecies'
+    getAllPokemonSpecies: 'getAllPokemonSpecies',
+    getTypeMatchup: 'getTypeMatchup'
   },
   Fragment: {
     PokemonBasicInfoFragment: 'PokemonBasicInfoFragment',
     PokemonExtraInfoFragment: 'PokemonExtraInfoFragment',
     PokemonStatsFragment: 'PokemonStatsFragment',
-    PokemonAbilitiesFragment: 'PokemonAbilitiesFragment'
+    PokemonAbilitiesFragment: 'PokemonAbilitiesFragment',
+    PokemonType: 'PokemonType'
   }
 }

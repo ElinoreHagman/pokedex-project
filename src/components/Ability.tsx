@@ -1,10 +1,21 @@
 import { useQuery } from "@apollo/client";
+import styled from "styled-components";
 import {
   GetFuzzyAbilityQuery,
   GetFuzzyAbilityQueryVariables,
-  QueryGetFuzzyAbilityArgs,
 } from "../GraphQL/codegen-types";
 import { GET_ABILITY_PARTIAL_FUZZY } from "../GraphQL/Queries/AbilityQueries";
+
+const Description = styled.div`
+  text-align: left;
+  margin-bottom: 7px;
+  font-size: 10px;
+  height: fit-content;
+  span:first-child {
+    font-weight: bold;
+    padding-right: 5px;
+  }
+`;
 
 interface AbilityProps {
   abilityName: string;
@@ -20,13 +31,12 @@ const Ability = ({ abilityName }: AbilityProps) => {
 
   if (loading) return null;
   const ability = data?.getFuzzyAbility.at(0)!;
-  console.log(ability);
 
   return (
-    <div>
-      {ability.name}
-      {ability.shortDesc}
-    </div>
+    <Description>
+      <span>{ability.name}</span>
+      <span>{ability.shortDesc}</span>
+    </Description>
   );
 };
 

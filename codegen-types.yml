@@ -1,7 +1,7 @@
 schema: "https://graphqlpokemon.favware.tech/"
 documents:
-  - "./src/Queries/*Queries.tsx"
-  - "./src/Queries/Fragments/*Fragments.tsx"
+  - "./src/GraphQl/Queries/*Queries.tsx"
+  - "./src/GraphQl/Fragments/*Fragments.tsx"
 config:
   scalars:
     Guid: string
