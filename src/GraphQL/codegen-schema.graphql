@@ -1,0 +1,3736 @@
+"""A Pokémon's abilities entry"""
+type Abilities {
+  """The first ability of a Pokémon"""
+  first: String!
+
+  """The hidden ability of a Pokémon"""
+  hidden: String
+
+  """The second ability of a Pokémon"""
+  second: String
+
+  """The special ability of a Pokémon"""
+  special: String
+}
+
+"""The supported abilities"""
+enum AbilitiesEnum {
+  adaptability
+  aerilate
+  aftermath
+  airlock
+  analytic
+  angerpoint
+  anticipation
+  arenatrap
+  aromaveil
+  asoneasoneglastrier
+  asonespectrier
+  aurabreak
+  baddreams
+  ballfetch
+  battery
+  battlearmor
+  battlebond
+  beastboost
+  berserk
+  bigpecks
+  blaze
+  bulletproof
+  cheekpouch
+  chillingneigh
+  chlorophyll
+  clearbody
+  cloudnine
+  colorchange
+  comatose
+  competitive
+  compoundeyes
+  contrary
+  corrosion
+  cottondown
+  curiousmedicine
+  cursedbody
+  cutecharm
+  damp
+  dancer
+  darkaura
+  dauntlessshield
+  dazzling
+  defeatist
+  defiant
+  deltastream
+  desolateland
+  disguise
+  download
+  dragonsmaw
+  drizzle
+  drought
+  dryskin
+  earlybird
+  effectspore
+  electricsurge
+  emergencyexit
+  fairyaura
+  filter
+  flamebody
+  flareboost
+  flashfire
+  flowergift
+  flowerveil
+  fluffy
+  forecast
+  forewarn
+  friendguard
+  frisk
+  fullmetalbody
+  furcoat
+  galewings
+  galvanize
+  gluttony
+  gooey
+  gorillatactics
+  grasspelt
+  grassysurge
+  grimneigh
+  gulpmissile
+  guts
+  harvest
+  healer
+  heatproof
+  heavymetal
+  honeygather
+  hugepower
+  hungerswitch
+  hustle
+  hydration
+  hypercutter
+  icebody
+  iceface
+  icescales
+  illuminate
+  illusion
+  immunity
+  imposter
+  infiltrator
+  innardsout
+  innerfocus
+  insomnia
+  intimidate
+  intrepidsword
+  ironbarbs
+  ironfist
+  justified
+  keeneye
+  klutz
+  leafguard
+  levitate
+  libero
+  lightmetal
+  lightningrod
+  limber
+  liquidooze
+  liquidvoice
+  longreach
+  magicbounce
+  magicguard
+  magician
+  magmaarmor
+  magnetpull
+  marvelscale
+  megalauncher
+  merciless
+  mimicry
+  minus
+  mirrorarmor
+  mistysurge
+  moldbreaker
+  moody
+  motordrive
+  mountaineer
+  moxie
+  multiscale
+  multitype
+  mummy
+  naturalcure
+  neuroforce
+  neutralizinggas
+  noability
+  noguard
+  normalize
+  oblivious
+  overcoat
+  overgrow
+  owntempo
+  parentalbond
+  pastelveil
+  perishbody
+  persistent
+  pickpocket
+  pickup
+  pixilate
+  plus
+  poisonheal
+  poisonpoint
+  poisontouch
+  powerconstruct
+  powerofalchemy
+  powerspot
+  prankster
+  pressure
+  primordialsea
+  prismarmor
+  propellertail
+  protean
+  psychicsurge
+  punkrock
+  purepower
+  queenlymajesty
+  quickdraw
+  quickfeet
+  raindish
+  rattled
+  rebound
+  receiver
+  reckless
+  refrigerate
+  regenerator
+  ripen
+  rivalry
+  rkssystem
+  rockhead
+  roughskin
+  runaway
+  sandforce
+  sandrush
+  sandspit
+  sandstream
+  sandveil
+  sapsipper
+  schooling
+  scrappy
+  screencleaner
+  serenegrace
+  shadowshield
+  shadowtag
+  shedskin
+  sheerforce
+  shellarmor
+  shielddust
+  shieldsdown
+  simple
+  skilllink
+  slowstart
+  slushrush
+  sniper
+  snowcloak
+  snowwarning
+  solarpower
+  solidrock
+  soulheart
+  soundproof
+  speedboost
+  stakeout
+  stall
+  stalwart
+  stamina
+  stancechange
+  static
+  steadfast
+  steamengine
+  steelworker
+  steelyspirit
+  stench
+  stickyhold
+  stormdrain
+  strongjaw
+  sturdy
+  suctioncups
+  superluck
+  surgesurfer
+  swarm
+  sweetveil
+  swiftswim
+  symbiosis
+  synchronize
+  tangledfeet
+  tanglinghair
+  technician
+  telepathy
+  teravolt
+  thickfat
+  tintedlens
+  torrent
+  toughclaws
+  toxicboost
+  trace
+  transistor
+  triage
+  truant
+  turboblaze
+  unaware
+  unburden
+  unnerve
+  unseenfist
+  victorystar
+  vitalspirit
+  voltabsorb
+  wanderingspirit
+  waterabsorb
+  waterbubble
+  watercompaction
+  waterveil
+  weakarmor
+  whitesmoke
+  wimpout
+  wonderguard
+  wonderskin
+  zenmode
+}
+
+"""A single Pokémon ability entry"""
+type Ability {
+  """Bulbapedia page for an ability"""
+  bulbapediaPage: String!
+
+  """The long description for an ability"""
+  desc: String
+
+  """
+  Whether this ability has effects outside of battle, and if so what the effect is
+  """
+  isFieldAbility: String
+
+  """The key of the ability as stored in the API"""
+  key: AbilitiesEnum!
+
+  """The name for an ability"""
+  name: String!
+
+  """Serebii page for an ability"""
+  serebiiPage: String!
+
+  """The short description for an ability"""
+  shortDesc: String!
+
+  """Smogon page for an ability"""
+  smogonPage: String!
+}
+
+"""A Pokémon catch rate entry"""
+type CatchRate {
+  """
+  The base catch rate for a Pokémon that will be used to calculate the final catch rate
+  """
+  base: Int!
+
+  """
+  The chance to capture a Pokémon when an ordinary Poké Ball is thrown at full health without any status condition
+  """
+  percentageWithOrdinaryPokeballAtFullHealth: String!
+}
+
+"""A Pokémon's EV yields"""
+type EvYields {
+  """The attack EV yield of a Pokémon"""
+  attack: Int!
+
+  """The defense EV yield of a Pokémon"""
+  defense: Int!
+
+  """The HP EV yield of a pokémon"""
+  hp: Int!
+
+  """The special attack EV yield of a Pokémon"""
+  specialattack: Int!
+
+  """The special defense EV yield of a Pokémon"""
+  specialdefense: Int!
+
+  """The speed EV yield of a Pokémon"""
+  speed: Int!
+}
+
+"""A flavor text entry for a Pokémon"""
+type Flavor {
+  """The flavor text for this entry"""
+  flavor: String!
+
+  """The name of the game this flavor text is from"""
+  game: String!
+}
+
+"""A Pokémon gender ratio entry"""
+type Gender {
+  """The percentage for female occurrences"""
+  female: String!
+
+  """The percentage of male occurrences"""
+  male: String!
+}
+
+"""A single item entry"""
+type Item {
+  """Bulbapedia page for an item"""
+  bulbapediaPage: String!
+
+  """The long description for an item"""
+  desc: String!
+
+  """The generation in which this item was introduced"""
+  generationIntroduced: Int!
+
+  """Whether an item is non-standard, and if it is why"""
+  isNonstandard: String
+
+  """The key of the item as stored in the API"""
+  key: ItemsEnum!
+
+  """The name for an item"""
+  name: String!
+
+  """Serebii page for an item"""
+  serebiiPage: String!
+
+  """The long description for an item"""
+  shortDesc: String
+
+  """Smogon page for an item"""
+  smogonPage: String
+
+  """The sprite for an item"""
+  sprite: String!
+}
+
+"""The supported items"""
+enum ItemsEnum {
+  abomasite
+  absolite
+  absorbbulb
+  acrobike
+  adamantorb
+  adrenalineorb
+  adventureguide
+  aerodactylite
+  aggronite
+  aguavberry
+  airballoon
+  alakazite
+  aloraichiumz
+  altarianite
+  ampharosite
+  apicotberry
+  apricornbox
+  aquasuit
+  armorfossil
+  aspearberry
+  assaultvest
+  audinite
+  auroraticket
+  autograph
+  azureflute
+  babiriberry
+  bandautograph
+  banettite
+  basementkey
+  beastball
+  beedrillite
+  belueberry
+  berry
+  berryjuice
+  berrypots
+  berrypouch
+  berrysweet
+  berserkgene
+  bicycle
+  bigroot
+  bikevoucher
+  bindingband
+  bitterberry
+  blackbelt
+  blackglasses
+  blacksludge
+  blastoisinite
+  blazikenite
+  bluecard
+  blueorb
+  bluepetal
+  blukberry
+  blunderpolicy
+  bottlecap
+  brightpowder
+  buggem
+  buginiumz
+  bugmemory
+  burndrive
+  burntberry
+  cameruptite
+  campinggear
+  cardkey
+  catchingcharm
+  cellbattery
+  charcoal
+  charizarditex
+  charizarditey
+  chartiberry
+  cheriberry
+  cherishball
+  chestoberry
+  chilanberry
+  chilldrive
+  chippedpot
+  choiceband
+  choicescarf
+  choicespecs
+  chopleberry
+  clawfossil
+  clearbell
+  cloversweet
+  cobaberry
+  coincase
+  colburberry
+  colressmchn
+  contestcostume
+  contestpass
+  cornnberry
+  coupon1
+  coupon2
+  coupon3
+  coverfossil
+  crackedpot
+  crucibellite
+  custapberry
+  damprock
+  darkgem
+  darkiniumz
+  darkmemory
+  darkstone
+  dawnstone
+  decidiumz
+  deepseascale
+  deepseatooth
+  destinyknot
+  devongoods
+  devonparts
+  devonscope
+  devonscubagear
+  diancite
+  diveball
+  dnasplicers
+  domefossil
+  dousedrive
+  dowsingmachine
+  dowsingmchn
+  dracoplate
+  dragonfang
+  dragongem
+  dragoniumz
+  dragonmemory
+  dragonscale
+  dragonskull
+  dreadplate
+  dreamball
+  droppeditem
+  dubiousdisc
+  durinberry
+  duskball
+  duskstone
+  dynamaxband
+  earthplate
+  eeviumz
+  eggcard
+  ejectbutton
+  ejectpack
+  electirizer
+  electricgem
+  electricmemory
+  electricseed
+  electriumz
+  elevatorkey
+  endorsement
+  energypowder
+  enigmaberry
+  enigmastone
+  enigmaticcard
+  eonflute
+  eonticket
+  escaperope
+  eviolite
+  expertbelt
+  explorerkit
+  expshare
+  fairiumz
+  fairygem
+  fairymemory
+  famechecker
+  fashioncase
+  fastball
+  fightinggem
+  fightingmemory
+  fightiniumz
+  figyberry
+  firegem
+  firememory
+  firestone
+  firiumz
+  fishingrod
+  fistplate
+  flameorb
+  flameplate
+  floatstone
+  flowersweet
+  flyinggem
+  flyingmemory
+  flyiniumz
+  focusband
+  focussash
+  foragebag
+  fossilizedbird
+  fossilizeddino
+  fossilizeddrake
+  fossilizedfish
+  friendball
+  fullincense
+  fullrestore
+  galactickey
+  galaricacuff
+  galaricawreath
+  galladite
+  ganlonberry
+  garchompite
+  gardevoirite
+  gbsounds
+  gengarite
+  ghostgem
+  ghostiumz
+  ghostmemory
+  glalitite
+  godstone
+  gogoggles
+  goldberry
+  goldbottlecap
+  goldteeth
+  goodrod
+  gracidea
+  gram1
+  gram2
+  gram3
+  grassgem
+  grassiumz
+  grassmemory
+  grassyseed
+  greatball
+  greenpetal
+  grepaberry
+  gripclaw
+  griseousorb
+  groundgem
+  groundiumz
+  groundmemory
+  grubbyhanky
+  gsball
+  gyaradosite
+  habanberry
+  hardstone
+  healball
+  heatrock
+  heavyball
+  heavydutyboots
+  helixfossil
+  heracronite
+  hitechearbuds
+  holocaster
+  hondewberry
+  honorofkalos
+  houndoominite
+  hyperpotion
+  iapapaberry
+  iceberry
+  icegem
+  icememory
+  icestone
+  icicleplate
+  iciumz
+  icyrock
+  ilimasnormaliumz
+  inciniumz
+  insectplate
+  intriguingstone
+  ironball
+  ironplate
+  itemfinder
+  jabocaberry
+  jadeorb
+  jawfossil
+  journal
+  kangaskhanite
+  kasibberry
+  kebiaberry
+  keeberry
+  kelpsyberry
+  keystone
+  keytoroom1
+  keytoroom2
+  keytoroom4
+  keytoroom6
+  kingsrock
+  kommoniumz
+  laggingtail
+  lansatberry
+  latiasite
+  latiosite
+  laxincense
+  leafstone
+  leek
+  leftovers
+  leftpokeball
+  legendplate
+  lenscase
+  leppaberry
+  letter
+  levelball
+  libertypass
+  liechiberry
+  lifeorb
+  liftkey
+  lightball
+  lightclay
+  lightstone
+  lockcapsule
+  lookerticket
+  lootsack
+  lopunnite
+  lostitem
+  loveball
+  lovesweet
+  lucarionite
+  luckypunch
+  lumberry
+  luminousmoss
+  lunaliumz
+  lunarwing
+  lureball
+  lustrousorb
+  luxuryball
+  lycaniumz
+  machbike
+  machinepart
+  machobrace
+  magmaemblem
+  magmarizer
+  magmastone
+  magmasuit
+  magnet
+  magoberry
+  magostberry
+  mail
+  makeupbag
+  manectite
+  marangaberry
+  marshadiumz
+  masterball
+  mawilite
+  maxpotion
+  meadowplate
+  medalbox
+  medichamite
+  megabracelet
+  megaring
+  membercard
+  mentalherb
+  metagrossite
+  metalcoat
+  metalpowder
+  meteorite
+  meteoriteshard
+  metronome
+  mewniumz
+  mewtwonitex
+  mewtwonitey
+  micleberry
+  mimikiumz
+  mindplate
+  mintberry
+  miracleberry
+  miracleseed
+  mistyseed
+  moonball
+  moonflute
+  moonstone
+  muscleband
+  mysteryberry
+  mysteryegg
+  mysticticket
+  mysticwater
+  nanabberry
+  nestball
+  netball
+  nevermeltice
+  nlunarizer
+  nomelberry
+  normalgem
+  normaliumz
+  nsolarizer
+  oaksletter
+  oaksparcel
+  occaberry
+  oddincense
+  oldamber
+  oldcharm
+  oldletter
+  oldrod
+  oldseamap
+  oranberry
+  orangepetal
+  ovalcharm
+  ovalstone
+  pairoftickets
+  palpad
+  pamtreberry
+  parcel
+  parkball
+  pass
+  passhoberry
+  payapaberry
+  pechaberry
+  permit
+  persimberry
+  petayaberry
+  photoalbum
+  pidgeotite
+  pikaniumz
+  pikashuniumz
+  pinapberry
+  pinkbow
+  pinkpetal
+  pinsirite
+  pixieplate
+  plasmacard
+  plumefossil
+  poffincase
+  pointcard
+  poisonbarb
+  poisongem
+  poisoniumz
+  poisonmemory
+  pokeball
+  pokeblockcase
+  pokeblockkit
+  pokeflute
+  pokemonboxlink
+  pokeradar
+  polkadotbow
+  pomegberry
+  potion
+  powderjar
+  poweranklet
+  powerband
+  powerbelt
+  powerbracer
+  powerherb
+  powerlens
+  powerplantpass
+  powerweight
+  premierball
+  primariumz
+  prismscale
+  prisonbottle
+  professorsmask
+  profsletter
+  propcase
+  protectivepads
+  protector
+  przcureberry
+  psncureberry
+  psychicgem
+  psychicmemory
+  psychicseed
+  psychiumz
+  purplepetal
+  qualotberry
+  quickball
+  quickclaw
+  quickpowder
+  rabutaberry
+  ragecandybar
+  rainbowflower
+  rainbowpass
+  rainbowwing
+  rarebone
+  rawstberry
+  razorclaw
+  razorfang
+  razzberry
+  reapercloth
+  redcard
+  redchain
+  redorb
+  redpetal
+  redscale
+  repeatball
+  revealglass
+  ribbonsweet
+  ridepager
+  rindoberry
+  ringtarget
+  rm1key
+  rm2key
+  rm4key
+  rm6key
+  rockgem
+  rockincense
+  rockiumz
+  rockmemory
+  rockyhelmet
+  rollerskates
+  roomservice
+  rootfossil
+  roseincense
+  roseliberry
+  rotombike
+  rotomcatalog
+  rowapberry
+  ruby
+  rulebook
+  rustedshield
+  rustedsword
+  sablenite
+  sachet
+  safariball
+  safetygoggles
+  sailfossil
+  salacberry
+  salamencite
+  sapphire
+  scanner
+  sceptilite
+  scizorite
+  scopelens
+  seaincense
+  sealbag
+  sealcase
+  secretkey
+  secretpotion
+  sharpbeak
+  sharpedonite
+  shedshell
+  shellbell
+  shinycharm
+  shinystone
+  shockdrive
+  shucaberry
+  silkscarf
+  silphscope
+  silverpowder
+  silverwing
+  sitrusberry
+  skullfossil
+  skyplate
+  slowbronite
+  slowpoketail
+  smoothrock
+  snorliumz
+  snowball
+  softsand
+  solganiumz
+  soniasbook
+  sootsack
+  souldew
+  sparklingstone
+  spelltag
+  spelonberry
+  splashplate
+  spookyplate
+  sportball
+  sprayduck
+  sprinklotad
+  squirtbottle
+  ssticket
+  starfberry
+  starsweet
+  steelgem
+  steeliumz
+  steelixite
+  steelmemory
+  stick
+  stickybarb
+  stoneplate
+  storagekey
+  strawberrysweet
+  suitekey
+  sunflute
+  sunstone
+  superpotion
+  superrod
+  surgebadge
+  swampertite
+  sweetapple
+  tamatoberry
+  tangaberry
+  tapuniumz
+  tartapple
+  tea
+  teachytv
+  terrainextender
+  thickclub
+  throatspray
+  thunderstone
+  tidalbell
+  timerball
+  tmcase
+  tmvpass
+  townmap
+  toxicorb
+  toxicplate
+  traveltrunk
+  tripass
+  twistedspoon
+  tyranitarite
+  ultraball
+  ultranecroziumz
+  unownreport
+  upgrade
+  utilityumbrella
+  venusaurite
+  vilevial
+  vsrecorder
+  vsseeker
+  wacanberry
+  wailmerpail
+  watergem
+  wateriumz
+  watermemory
+  waterstone
+  watmelberry
+  waveincense
+  weaknesspolicy
+  wepearberry
+  whippeddream
+  whiteherb
+  widelens
+  wikiberry
+  wiseglasses
+  wishingstar
+  workskey
+  xtransceiver
+  yacheberry
+  yellowpetal
+  zapplate
+  zoomlens
+  zpowering
+  zring
+  zygardecube
+}
+
+"""A learnset entry"""
+type Learnset {
+  """
+  The back sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  backSprite: String!
+
+  """The PokéDex colour for the Pokémon"""
+  color: String!
+
+  """The moves that are exclusively learned in the Unova Dream World"""
+  dreamworldMoves: [LearnsetMove!]
+
+  """The moves that can be passed as egg moves"""
+  eggMoves: [LearnsetMove!]
+
+  """The moves that are exclusive to event variants of the Pokémon"""
+  eventMoves: [LearnsetMove!]
+
+  """The moves that can be learned through levelling up"""
+  levelUpMoves: [LearnsetLevelUpMove!]
+
+  """The dex number for a Pokémon"""
+  num: Int!
+
+  """The key of the Pokémon as stored in the API"""
+  pokemonKey: PokemonEnum!
+
+  """
+  The shiny back sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  shinyBackSprite: String!
+
+  """
+  The shiny sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  shinySprite: String!
+
+  """The species name for a Pokémon"""
+  species: String!
+
+  """
+  The sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  sprite: String!
+
+  """
+  The moves that can be learned from a Technical Machine or Technical Record
+  """
+  tmMoves: [LearnsetMove!]
+
+  """The moves that can be learned from a move tutor"""
+  tutorMoves: [LearnsetMove!]
+
+  """The moves that can be learned through virtual console transfer"""
+  virtualTransferMoves: [LearnsetMove!]
+}
+
+"""A learnset level up move entry"""
+type LearnsetLevelUpMove {
+  """The generation in which this pokémon learned the move this way"""
+  generation: Int
+
+  """The level at which the move is learned"""
+  level: Int
+
+  """The name of the move"""
+  name: String
+}
+
+"""A learnset move entry"""
+type LearnsetMove {
+  """The generation in which this pokémon learned the move this way"""
+  generation: Int
+
+  """The name of the move"""
+  name: String
+}
+
+"""A single Pokémon move entry"""
+type Move {
+  """The accuracy for a move"""
+  accuracy: Int!
+
+  """The base power for a move"""
+  basePower: String!
+
+  """Bulbapedia page for a move"""
+  bulbapediaPage: String!
+
+  """The category for a move"""
+  category: String!
+
+  """The contest type for a move"""
+  contestType: String
+
+  """The long description for a move"""
+  desc: String
+
+  """
+  Whether this move can be used outside of battle, and if it can what the effect of the field move is
+  """
+  isFieldMove: String
+
+  """
+  Whether this move is a G-MAX move, and if it is which Gigantamaxed Pokémon can use it
+  """
+  isGMax: String
+
+  """Whether a move is non-standard, and if it is why"""
+  isNonstandard: String
+
+  """
+  Whether this move is a Z-Move, and if it is the Z-Crystal required to trigger it
+  """
+  isZ: String
+
+  """The key of the move as stored in the API"""
+  key: MovesEnum!
+
+  """The power this move will have when used with its Max Move equivalent"""
+  maxMovePower: Int
+
+  """The name for a move"""
+  name: String!
+
+  """The power points for a move"""
+  pp: Int!
+
+  """The priority for a move"""
+  priority: Int!
+
+  """Serebii page for a move"""
+  serebiiPage: String!
+
+  """The short description for a move"""
+  shortDesc: String!
+
+  """Smogon page for a move"""
+  smogonPage: String!
+
+  """The target for a move"""
+  target: String!
+
+  """The type for a move"""
+  type: String!
+
+  """The power this move will have when used with its Z-move equivalent"""
+  zMovePower: Int!
+}
+
+"""The supported moves"""
+enum MovesEnum {
+  absorb
+  accelerock
+  acid
+  acidarmor
+  aciddownpour
+  acidspray
+  acrobatics
+  acupressure
+  aerialace
+  aeroblast
+  afteryou
+  agility
+  aircutter
+  airslash
+  alloutpummeling
+  allyswitch
+  amnesia
+  anchorshot
+  ancientpower
+  appleacid
+  aquajet
+  aquaring
+  aquatail
+  armthrust
+  aromatherapy
+  aromaticmist
+  assist
+  assurance
+  astonish
+  astralbarrage
+  attackorder
+  attract
+  aurasphere
+  aurawheel
+  aurorabeam
+  auroraveil
+  autotomize
+  avalanche
+  babydolleyes
+  baddybad
+  banefulbunker
+  barbbarrage
+  barrage
+  barrier
+  batonpass
+  beakblast
+  beatup
+  behemothbash
+  behemothblade
+  belch
+  bellydrum
+  bestow
+  bide
+  bind
+  bite
+  bittermalice
+  blackholeeclipse
+  blastburn
+  blazekick
+  bleakwindstorm
+  blizzard
+  block
+  bloomdoom
+  blueflare
+  bodypress
+  bodyslam
+  boltbeak
+  boltstrike
+  boneclub
+  bonemerang
+  bonerush
+  boomburst
+  bounce
+  bouncybubble
+  branchpoke
+  bravebird
+  breakingswipe
+  breakneckblitz
+  brickbreak
+  brine
+  brutalswing
+  bubble
+  bubblebeam
+  bugbite
+  bugbuzz
+  bulkup
+  bulldoze
+  bulletpunch
+  bulletseed
+  burningjealousy
+  burnup
+  buzzybuzz
+  calmmind
+  camouflage
+  captivate
+  catastropika
+  ceaselessedge
+  celebrate
+  charge
+  chargebeam
+  charm
+  chatter
+  chipaway
+  chloroblast
+  circlethrow
+  clamp
+  clangingscales
+  clangoroussoul
+  clangoroussoulblaze
+  clearsmog
+  closecombat
+  coaching
+  coil
+  cometpunch
+  confide
+  confuseray
+  confusion
+  constrict
+  continentalcrush
+  conversion
+  conversion2
+  copycat
+  coreenforcer
+  corkscrewcrash
+  corrosivegas
+  cosmicpower
+  cottonguard
+  cottonspore
+  counter
+  courtchange
+  covet
+  crabhammer
+  craftyshield
+  crosschop
+  crosspoison
+  crunch
+  crushclaw
+  crushgrip
+  curse
+  cut
+  darkestlariat
+  darkpulse
+  darkvoid
+  dazzlinggleam
+  decorate
+  defendorder
+  defensecurl
+  defog
+  destinybond
+  detect
+  devastatingdrake
+  diamondstorm
+  dig
+  direclaw
+  disable
+  disarmingvoice
+  discharge
+  dive
+  dizzypunch
+  doomdesire
+  doubleedge
+  doublehit
+  doubleironbash
+  doublekick
+  doubleslap
+  doubleteam
+  dracometeor
+  dragonascent
+  dragonbreath
+  dragonclaw
+  dragondance
+  dragondarts
+  dragonenergy
+  dragonhammer
+  dragonpulse
+  dragonrage
+  dragonrush
+  dragontail
+  drainingkiss
+  drainpunch
+  dreameater
+  drillpeck
+  drillrun
+  drumbeating
+  dualchop
+  dualwingbeat
+  dynamaxcannon
+  dynamicpunch
+  earthpower
+  earthquake
+  echoedvoice
+  eerieimpulse
+  eeriespell
+  eggbomb
+  electricterrain
+  electrify
+  electroball
+  electroweb
+  embargo
+  ember
+  encore
+  endeavor
+  endure
+  energyball
+  entrainment
+  eruption
+  esperwing
+  eternabeam
+  expandingforce
+  explosion
+  extrasensory
+  extremeevoboost
+  extremespeed
+  facade
+  fairylock
+  fairywind
+  fakeout
+  faketears
+  falsesurrender
+  falseswipe
+  featherdance
+  feint
+  feintattack
+  fellstinger
+  fierydance
+  fierywrath
+  finalgambit
+  fireblast
+  firefang
+  firelash
+  firepledge
+  firepunch
+  firespin
+  firstimpression
+  fishiousrend
+  fissure
+  flail
+  flameburst
+  flamecharge
+  flamethrower
+  flamewheel
+  flareblitz
+  flash
+  flashcannon
+  flatter
+  fleurcannon
+  fling
+  flipturn
+  floatyfall
+  floralhealing
+  flowershield
+  fly
+  flyingpress
+  focusblast
+  focusenergy
+  focuspunch
+  followme
+  forcepalm
+  foresight
+  forestscurse
+  foulplay
+  freezedry
+  freezeshock
+  freezingglare
+  freezyfrost
+  frenzyplant
+  frostbreath
+  frustration
+  furyattack
+  furycutter
+  furyswipes
+  fusionbolt
+  fusionflare
+  futuresight
+  gastroacid
+  geargrind
+  gearup
+  genesissupernova
+  geomancy
+  gigadrain
+  gigaimpact
+  gigavolthavoc
+  glaciallance
+  glaciate
+  glare
+  glitzyglow
+  gmaxbefuddle
+  gmaxcannonade
+  gmaxcentiferno
+  gmaxchistrike
+  gmaxcuddle
+  gmaxdepletion
+  gmaxdrumsolo
+  gmaxfinale
+  gmaxfireball
+  gmaxfoamburst
+  gmaxgoldrush
+  gmaxgravitas
+  gmaxhydrosnipe
+  gmaxmalodor
+  gmaxmeltdown
+  gmaxoneblow
+  gmaxrapidflow
+  gmaxreplenish
+  gmaxresonance
+  gmaxsandblast
+  gmaxsmite
+  gmaxsnooze
+  gmaxsteelsurge
+  gmaxstonesurge
+  gmaxstunshock
+  gmaxsweetness
+  gmaxtartness
+  gmaxterror
+  gmaxvinelash
+  gmaxvolcalith
+  gmaxvoltcrash
+  gmaxwildfire
+  gmaxwindrage
+  grassknot
+  grasspledge
+  grasswhistle
+  grassyglide
+  grassyterrain
+  gravapple
+  gravity
+  growl
+  growth
+  grudge
+  guardianofalola
+  guardsplit
+  guardswap
+  guillotine
+  gunkshot
+  gust
+  gyroball
+  hail
+  hammerarm
+  happyhour
+  harden
+  haze
+  headbutt
+  headcharge
+  headlongrush
+  headsmash
+  healbell
+  healblock
+  healingwish
+  healorder
+  healpulse
+  heartstamp
+  heartswap
+  heatcrash
+  heatwave
+  heavyslam
+  helpinghand
+  hex
+  hiddenpower
+  hiddenpowerbug
+  hiddenpowerdark
+  hiddenpowerdragon
+  hiddenpowerelectric
+  hiddenpowerfighting
+  hiddenpowerfire
+  hiddenpowerflying
+  hiddenpowerghost
+  hiddenpowergrass
+  hiddenpowerground
+  hiddenpowerice
+  hiddenpowerpoison
+  hiddenpowerpsychic
+  hiddenpowerrock
+  hiddenpowersteel
+  hiddenpowerwater
+  highhorsepower
+  highjumpkick
+  holdback
+  holdhands
+  honeclaws
+  hornattack
+  horndrill
+  hornleech
+  howl
+  hurricane
+  hydrocannon
+  hydropump
+  hydrovortex
+  hyperbeam
+  hyperfang
+  hyperspacefury
+  hyperspacehole
+  hypervoice
+  hypnosis
+  iceball
+  icebeam
+  iceburn
+  icefang
+  icehammer
+  icepunch
+  iceshard
+  iciclecrash
+  iciclespear
+  icywind
+  imprison
+  incinerate
+  infernalparade
+  inferno
+  infernooverdrive
+  infestation
+  ingrain
+  instruct
+  iondeluge
+  irondefense
+  ironhead
+  irontail
+  jawlock
+  judgment
+  jumpkick
+  junglehealing
+  karatechop
+  kinesis
+  kingsshield
+  knockoff
+  landswrath
+  laserfocus
+  lashout
+  lastresort
+  lavaplume
+  leafage
+  leafblade
+  leafstorm
+  leaftornado
+  leechlife
+  leechseed
+  leer
+  letssnuggleforever
+  lick
+  lifedew
+  lightofruin
+  lightscreen
+  lightthatburnsthesky
+  liquidation
+  lockon
+  lovelykiss
+  lowkick
+  lowsweep
+  luckychant
+  lunarblessing
+  lunardance
+  lunge
+  lusterpurge
+  machpunch
+  magicalleaf
+  magiccoat
+  magicpowder
+  magicroom
+  magikarpsrevenge
+  magmastorm
+  magnetbomb
+  magneticflux
+  magnetrise
+  magnitude
+  maliciousmoonsault
+  matblock
+  maxairstream
+  maxdarkness
+  maxflare
+  maxflutterby
+  maxgeyser
+  maxguard
+  maxhailstorm
+  maxknuckle
+  maxlightning
+  maxmindstorm
+  maxooze
+  maxovergrowth
+  maxphantasm
+  maxquake
+  maxrockfall
+  maxstarfall
+  maxsteelspike
+  maxstrike
+  maxwyrmwind
+  meanlook
+  meditate
+  mefirst
+  megadrain
+  megahorn
+  megakick
+  megapunch
+  memento
+  menacingmoonrazemaelstrom
+  metalburst
+  metalclaw
+  metalsound
+  meteorassault
+  meteorbeam
+  meteormash
+  metronome
+  milkdrink
+  mimic
+  mindblown
+  mindreader
+  minimize
+  miracleeye
+  mirrorcoat
+  mirrormove
+  mirrorshot
+  mist
+  mistball
+  mistyexplosion
+  mistyterrain
+  moonblast
+  moongeistbeam
+  moonlight
+  morningsun
+  mountaingale
+  mudbomb
+  muddywater
+  mudshot
+  mudslap
+  mudsport
+  multiattack
+  mysticalfire
+  mysticalpower
+  nastyplot
+  naturalgift
+  naturepower
+  naturesmadness
+  needlearm
+  neverendingnightmare
+  nightdaze
+  nightmare
+  nightshade
+  nightslash
+  nobleroar
+  noretreat
+  nuzzle
+  oblivionwing
+  obstruct
+  oceanicoperetta
+  octazooka
+  octolock
+  odorsleuth
+  ominouswind
+  originpulse
+  outrage
+  overdrive
+  overheat
+  painsplit
+  paleowave
+  paraboliccharge
+  partingshot
+  payback
+  payday
+  peck
+  perishsong
+  petalblizzard
+  petaldance
+  phantomforce
+  photongeyser
+  pikapapow
+  pinmissile
+  plasmafists
+  playnice
+  playrough
+  pluck
+  poisonfang
+  poisongas
+  poisonjab
+  poisonpowder
+  poisonsting
+  poisontail
+  pollenpuff
+  poltergeist
+  pound
+  powder
+  powdersnow
+  powergem
+  powershift
+  powersplit
+  powerswap
+  powertrick
+  powertrip
+  poweruppunch
+  powerwhip
+  precipiceblades
+  present
+  prismaticlaser
+  protect
+  psybeam
+  psychic
+  psychicfangs
+  psychicterrain
+  psychoboost
+  psychocut
+  psychoshift
+  psychup
+  psyshieldbash
+  psyshock
+  psystrike
+  psywave
+  pulverizingpancake
+  punishment
+  purify
+  pursuit
+  pyroball
+  quash
+  quickattack
+  quickguard
+  quiverdance
+  rage
+  ragepowder
+  ragingfury
+  raindance
+  rapidspin
+  razorleaf
+  razorshell
+  razorwind
+  recover
+  recycle
+  reflect
+  reflecttype
+  refresh
+  relicsong
+  rest
+  retaliate
+  return
+  revelationdance
+  revenge
+  reversal
+  risingvoltage
+  roar
+  roaroftime
+  rockblast
+  rockclimb
+  rockpolish
+  rockslide
+  rocksmash
+  rockthrow
+  rocktomb
+  rockwrecker
+  roleplay
+  rollingkick
+  rollout
+  roost
+  rototiller
+  round
+  sacredfire
+  sacredsword
+  safeguard
+  sandattack
+  sandsearstorm
+  sandstorm
+  sandtomb
+  sappyseed
+  savagespinout
+  scald
+  scaleshot
+  scaryface
+  scorchingsands
+  scratch
+  screech
+  searingshot
+  searingsunrazesmash
+  secretpower
+  secretsword
+  seedbomb
+  seedflare
+  seismictoss
+  selfdestruct
+  shadowball
+  shadowbone
+  shadowclaw
+  shadowforce
+  shadowpunch
+  shadowsneak
+  shadowstrike
+  sharpen
+  shatteredpsyche
+  sheercold
+  shellsidearm
+  shellsmash
+  shelltrap
+  shelter
+  shiftgear
+  shockwave
+  shoreup
+  signalbeam
+  silverwind
+  simplebeam
+  sing
+  sinisterarrowraid
+  sizzlyslide
+  sketch
+  skillswap
+  skittersmack
+  skullbash
+  skyattack
+  skydrop
+  skyuppercut
+  slackoff
+  slam
+  slash
+  sleeppowder
+  sleeptalk
+  sludge
+  sludgebomb
+  sludgewave
+  smackdown
+  smartstrike
+  smellingsalts
+  smog
+  smokescreen
+  snaptrap
+  snarl
+  snatch
+  snipeshot
+  snore
+  soak
+  softboiled
+  solarbeam
+  solarblade
+  sonicboom
+  soulstealing7starstrike
+  spacialrend
+  spark
+  sparklingaria
+  sparklyswirl
+  spectralthief
+  speedswap
+  spiderweb
+  spikecannon
+  spikes
+  spikyshield
+  spiritbreak
+  spiritshackle
+  spite
+  spitup
+  splash
+  splinteredstormshards
+  splishysplash
+  spore
+  spotlight
+  springtidestorm
+  stealthrock
+  steameruption
+  steamroller
+  steelbeam
+  steelroller
+  steelwing
+  stickyweb
+  stockpile
+  stokedsparksurfer
+  stomp
+  stompingtantrum
+  stoneaxe
+  stoneedge
+  storedpower
+  stormthrow
+  strangesteam
+  strength
+  strengthsap
+  stringshot
+  struggle
+  strugglebug
+  stuffcheeks
+  stunspore
+  submission
+  substitute
+  subzeroslammer
+  suckerpunch
+  sunnyday
+  sunsteelstrike
+  superfang
+  superpower
+  supersonic
+  supersonicskystrike
+  surf
+  surgingstrikes
+  swagger
+  swallow
+  sweetkiss
+  sweetscent
+  swift
+  switcheroo
+  swordsdance
+  synchronoise
+  synthesis
+  tackle
+  tailglow
+  tailslap
+  tailwhip
+  tailwind
+  takedown
+  takeheart
+  tarshot
+  taunt
+  tearfullook
+  teatime
+  technoblast
+  tectonicrage
+  teeterdance
+  telekinesis
+  teleport
+  tenmillionvoltthunderbolt
+  terrainpulse
+  thief
+  thousandarrows
+  thousandwaves
+  thrash
+  throatchop
+  thunder
+  thunderbolt
+  thundercage
+  thunderfang
+  thunderouskick
+  thunderpunch
+  thundershock
+  thunderwave
+  tickle
+  topsyturvy
+  torment
+  toxic
+  toxicspikes
+  toxicthread
+  transform
+  triattack
+  trick
+  trickortreat
+  trickroom
+  triplearrows
+  tripleaxel
+  triplekick
+  tropkick
+  trumpcard
+  twineedle
+  twinkletackle
+  twister
+  uproar
+  uturn
+  vacuumwave
+  vcreate
+  veeveevolley
+  venomdrench
+  venoshock
+  victorydance
+  vinewhip
+  visegrip
+  vitalthrow
+  voltswitch
+  volttackle
+  wakeupslap
+  waterfall
+  watergun
+  waterpledge
+  waterpulse
+  watershuriken
+  watersport
+  waterspout
+  wavecrash
+  weatherball
+  whirlpool
+  whirlwind
+  wickedblow
+  wideguard
+  wildboltstorm
+  wildcharge
+  willowisp
+  wingattack
+  wish
+  withdraw
+  wonderroom
+  woodhammer
+  workup
+  worryseed
+  wrap
+  wringout
+  xscissor
+  yawn
+  zapcannon
+  zenheadbutt
+  zingzap
+  zippyzap
+}
+
+"""A Pokémon's entry"""
+type Pokemon {
+  """The abilities for a Pokémon"""
+  abilities: Abilities!
+
+  """
+  The back sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  backSprite: String!
+
+  """Base form if this entry describes an alternate form"""
+  baseForme: String
+
+  """Base species if this entry describes a special form"""
+  baseSpecies: String
+
+  """Base stats for a Pokémon"""
+  baseStats: Stats!
+
+  """The total of all base stats for a Pokémon"""
+  baseStatsTotal: Int!
+
+  """Bulbapedia page for a Pokémon"""
+  bulbapediaPage: String!
+
+  """The catch rate data for a Pokémon"""
+  catchRate: CatchRate
+
+  """The colour of a Pokémon as listed in the Pokedex"""
+  color: String!
+
+  """
+  Any other *cosmetic* forms for a Pokémon, distinguished from other formes as cosmetic formes only change the look of the Pokémon, while other formes might also change an ability, moveset or other data.
+  """
+  cosmeticFormes: [String!]
+
+  """The egg groups a Pokémon is in"""
+  eggGroups: [String!]
+
+  """EV yields for a Pokémon"""
+  evYields: EvYields!
+
+  """The evolution level, or special method, for a Pokémon"""
+  evolutionLevel: String
+
+  """The evolutions for a Pokémon, if any"""
+  evolutions: [Pokemon!]
+
+  """The flavor texts for a Pokémon"""
+  flavorTexts: [Flavor!]!
+
+  """The form identifier of a Pokémon"""
+  forme: String
+
+  """The single letter identifier of the form"""
+  formeLetter: String
+
+  """The gender data for a Pokémon"""
+  gender: Gender!
+
+  """The height of a Pokémon in meters"""
+  height: Float!
+
+  """Whether the egg of a Pokémon is obtainable"""
+  isEggObtainable: Boolean!
+
+  """The key of the Pokémon as stored in the API"""
+  key: PokemonEnum!
+
+  """The levelling rate of a Pokémon"""
+  levellingRate: String
+
+  """The maximum number of steps required for the egg of a Pokémon to hatch"""
+  maximumHatchTime: Int
+
+  """The minimum number of steps required for the egg of a Pokémon to hatch"""
+  minimumHatchTime: Int
+
+  """The dex number for a Pokémon"""
+  num: Int!
+
+  """Any other forms for a Pokémon"""
+  otherFormes: [String!]
+
+  """The preevolutions for a Pokémon, if any"""
+  preevolutions: [Pokemon!]
+
+  """Serebii page for a Pokémon"""
+  serebiiPage: String!
+
+  """
+  The shiny back sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  shinyBackSprite: String!
+
+  """
+  The shiny sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  shinySprite: String!
+
+  """Smogon page for a Pokémon"""
+  smogonPage: String!
+
+  """The smogon tier a Pokémon falls under"""
+  smogonTier: String!
+
+  """The species name for a Pokémon"""
+  species: String!
+
+  """
+  The sprite for a Pokémon. For most Pokémon this will be the animated gif, with some exceptions that were older-gen exclusive
+  """
+  sprite: String!
+
+  """The types for a Pokémon"""
+  types: [String!]!
+
+  """The weight of a Pokémon in kilograms"""
+  weight: Float!
+}
+
+"""The supported Pokémon"""
+enum PokemonEnum {
+  abomasnow
+  abomasnowmega
+  abra
+  absol
+  absolmega
+  accelgor
+  aegislash
+  aegislashblade
+  aerodactyl
+  aerodactylmega
+  aggron
+  aggronmega
+  aipom
+  alakazam
+  alakazammega
+  alcremie
+  alcremiegmax
+  alomomola
+  altaria
+  altariamega
+  amaura
+  ambipom
+  amoonguss
+  ampharos
+  ampharosmega
+  anorith
+  appletun
+  appletungmax
+  applin
+  araquanid
+  araquanidtotem
+  arbok
+  arcanine
+  arcaninehisui
+  arceus
+  arceusbug
+  arceusdark
+  arceusdragon
+  arceuselectric
+  arceusfairy
+  arceusfighting
+  arceusfire
+  arceusflying
+  arceusghost
+  arceusgrass
+  arceusground
+  arceusice
+  arceuslegend
+  arceuspoison
+  arceuspsychic
+  arceusrock
+  arceussteel
+  arceuswater
+  archen
+  archeops
+  arctovish
+  arctozolt
+  argalis
+  arghonaut
+  ariados
+  armaldo
+  aromatisse
+  aron
+  arrokuda
+  articuno
+  articunogalar
+  astrolotl
+  audino
+  audinomega
+  aurorus
+  aurumoth
+  avalugg
+  avalugghisui
+  axew
+  azelf
+  azumarill
+  azurill
+  bagon
+  baltoy
+  banette
+  banettemega
+  barbaracle
+  barboach
+  barraskewda
+  basculegion
+  basculegionf
+  basculin
+  basculinbluestriped
+  basculinwhitestriped
+  bastiodon
+  bayleef
+  beartic
+  beautifly
+  beedrill
+  beedrillmega
+  beheeyem
+  beldum
+  bellossom
+  bellsprout
+  bergmite
+  bewear
+  bibarel
+  bidoof
+  binacle
+  bisharp
+  blacephalon
+  blastoise
+  blastoisegmax
+  blastoisemega
+  blaziken
+  blazikenmega
+  blipbug
+  blissey
+  blitzle
+  boldore
+  boltund
+  bonsly
+  bouffalant
+  bounsweet
+  braixen
+  brattler
+  braviary
+  braviaryhisui
+  breezi
+  breloom
+  brionne
+  bronzong
+  bronzor
+  bruxish
+  budew
+  buizel
+  bulbasaur
+  buneary
+  bunnelby
+  burmy
+  butterfree
+  butterfreegmax
+  buzzwole
+  cacnea
+  cacturne
+  caimanoe
+  calyrex
+  calyrexice
+  calyrexshadow
+  camerupt
+  cameruptmega
+  carbink
+  caribolt
+  carkol
+  carnivine
+  carracosta
+  carvanha
+  cascoon
+  castform
+  castformrainy
+  castformsnowy
+  castformsunny
+  caterpie
+  cawdet
+  cawmodore
+  celebi
+  celesteela
+  centiskorch
+  centiskorchgmax
+  chandelure
+  chansey
+  charizard
+  charizardgmax
+  charizardmegax
+  charizardmegay
+  charjabug
+  charmander
+  charmeleon
+  chatot
+  cherrim
+  cherrimsunshine
+  cherubi
+  chesnaught
+  chespin
+  chewtle
+  chikorita
+  chimchar
+  chimecho
+  chinchou
+  chingling
+  chromera
+  cinccino
+  cinderace
+  cinderacegmax
+  clamperl
+  clauncher
+  clawitzer
+  claydol
+  clefable
+  clefairy
+  cleffa
+  clobbopus
+  cloyster
+  coalossal
+  coalossalgmax
+  cobalion
+  cofagrigus
+  colossoil
+  combee
+  combusken
+  comfey
+  conkeldurr
+  copperajah
+  copperajahgmax
+  coribalis
+  corphish
+  corsola
+  corsolagalar
+  corviknight
+  corviknightgmax
+  corvisquire
+  cosmoem
+  cosmog
+  cottonee
+  crabominable
+  crabrawler
+  cradily
+  cramorant
+  cramorantgorging
+  cramorantgulping
+  cranidos
+  crawdaunt
+  cresselia
+  croagunk
+  crobat
+  croconaw
+  crucibelle
+  crucibellemega
+  crustle
+  cryogonal
+  cubchoo
+  cubone
+  cufant
+  cupra
+  cursola
+  cutiefly
+  cyclohm
+  cyndaquil
+  darkrai
+  darmanitan
+  darmanitangalar
+  darmanitangalarzen
+  darmanitanzen
+  dartrix
+  darumaka
+  darumakagalar
+  decidueye
+  decidueyehisui
+  dedenne
+  deerling
+  deino
+  delcatty
+  delibird
+  delphox
+  deoxys
+  deoxysattack
+  deoxysdefense
+  deoxysspeed
+  dewgong
+  dewott
+  dewpider
+  dhelmise
+  dialga
+  dialgaorigin
+  diancie
+  dianciemega
+  diggersby
+  diglett
+  diglettalola
+  ditto
+  dodrio
+  doduo
+  donphan
+  dorsoil
+  dottler
+  doublade
+  dracovish
+  dracozolt
+  dragalge
+  dragapult
+  dragonair
+  dragonite
+  drakloak
+  drampa
+  drapion
+  dratini
+  drednaw
+  drednawgmax
+  dreepy
+  drifblim
+  drifloon
+  drilbur
+  drizzile
+  drowzee
+  druddigon
+  dubwool
+  ducklett
+  dugtrio
+  dugtrioalola
+  dunsparce
+  duohm
+  duosion
+  duraludon
+  duraludongmax
+  durant
+  dusclops
+  dusknoir
+  duskull
+  dustox
+  dwebble
+  eelektrik
+  eelektross
+  eevee
+  eeveegmax
+  eeveestarter
+  eiscue
+  eiscuenoice
+  ekans
+  eldegoss
+  electabuzz
+  electivire
+  electrelk
+  electrike
+  electrode
+  electrodehisui
+  elekid
+  elgyem
+  embirch
+  emboar
+  emolga
+  empoleon
+  enamorus
+  enamorustherian
+  entei
+  equilibra
+  escavalier
+  espeon
+  espurr
+  eternatus
+  eternatuseternamax
+  excadrill
+  exeggcute
+  exeggutor
+  exeggutoralola
+  exploud
+  falinks
+  farfetchd
+  farfetchdgalar
+  fawnifer
+  fearow
+  feebas
+  fennekin
+  feraligatr
+  ferroseed
+  ferrothorn
+  fidgit
+  finneon
+  flaaffy
+  flabebe
+  flapple
+  flapplegmax
+  flarelm
+  flareon
+  fletchinder
+  fletchling
+  floatoy
+  floatzel
+  floette
+  floetteeternal
+  florges
+  flygon
+  fomantis
+  foongus
+  forretress
+  fraxure
+  frillish
+  frillishfemale
+  froakie
+  frogadier
+  froslass
+  frosmoth
+  furfrou
+  furret
+  gabite
+  gallade
+  gallademega
+  galvantula
+  garbodor
+  garbodorgmax
+  garchomp
+  garchompmega
+  gardevoir
+  gardevoirmega
+  gastly
+  gastrodon
+  genesect
+  genesectburn
+  genesectchill
+  genesectdouse
+  genesectshock
+  gengar
+  gengargmax
+  gengarmega
+  geodude
+  geodudealola
+  gible
+  gigalith
+  girafarig
+  giratina
+  giratinaorigin
+  glaceon
+  glalie
+  glaliemega
+  glameow
+  glastrier
+  gligar
+  gliscor
+  gloom
+  gogoat
+  golbat
+  goldeen
+  golduck
+  golem
+  golemalola
+  golett
+  golisopod
+  golurk
+  goodra
+  goodrahisui
+  goomy
+  gorebyss
+  gossifleur
+  gothita
+  gothitelle
+  gothorita
+  gourgeist
+  gourgeistlarge
+  gourgeistsmall
+  gourgeistsuper
+  granbull
+  grapploct
+  graveler
+  graveleralola
+  greedent
+  greninja
+  greninjaash
+  grimer
+  grimeralola
+  grimmsnarl
+  grimmsnarlgmax
+  grookey
+  grotle
+  groudon
+  groudonprimal
+  grovyle
+  growlithe
+  growlithehisui
+  grubbin
+  grumpig
+  gulpin
+  gumshoos
+  gumshoostotem
+  gurdurr
+  guzzlord
+  gyarados
+  gyaradosmega
+  hakamoo
+  happiny
+  hariyama
+  hatenna
+  hatterene
+  hatterenegmax
+  hattrem
+  haunter
+  hawlucha
+  haxorus
+  heatmor
+  heatran
+  heliolisk
+  helioptile
+  heracross
+  heracrossmega
+  herdier
+  hippopotas
+  hippowdon
+  hitmonchan
+  hitmonlee
+  hitmontop
+  honchkrow
+  honedge
+  hooh
+  hoopa
+  hoopaunbound
+  hoothoot
+  hoppip
+  horsea
+  houndoom
+  houndoommega
+  houndour
+  huntail
+  hydreigon
+  hypno
+  igglybuff
+  illumise
+  impidimp
+  incineroar
+  indeedee
+  indeedeef
+  infernape
+  inkay
+  inteleon
+  inteleongmax
+  ivysaur
+  jangmoo
+  jellicent
+  jellicentfemale
+  jigglypuff
+  jirachi
+  jolteon
+  joltik
+  jumbao
+  jumpluff
+  justyke
+  jynx
+  kabuto
+  kabutops
+  kadabra
+  kakuna
+  kangaskhan
+  kangaskhanmega
+  karrablast
+  kartana
+  kecleon
+  keldeo
+  keldeoresolute
+  kerfluffle
+  kingdra
+  kingler
+  kinglergmax
+  kirlia
+  kitsunoh
+  klang
+  kleavor
+  klefki
+  klink
+  klinklang
+  koffing
+  komala
+  kommoo
+  kommoototem
+  krabby
+  kricketot
+  kricketune
+  krilowatt
+  krokorok
+  krookodile
+  kubfu
+  kyogre
+  kyogreprimal
+  kyurem
+  kyuremblack
+  kyuremwhite
+  lairon
+  lampent
+  landorus
+  landorustherian
+  lanturn
+  lapras
+  laprasgmax
+  larvesta
+  larvitar
+  latias
+  latiasmega
+  latios
+  latiosmega
+  leafeon
+  leavanny
+  ledian
+  ledyba
+  lickilicky
+  lickitung
+  liepard
+  lileep
+  lilligant
+  lilliganthisui
+  lillipup
+  linoone
+  linoonegalar
+  litleo
+  litten
+  litwick
+  lombre
+  lopunny
+  lopunnymega
+  lotad
+  loudred
+  lucario
+  lucariomega
+  ludicolo
+  lugia
+  lumineon
+  lunala
+  lunatone
+  lurantis
+  lurantistotem
+  luvdisc
+  luxio
+  luxray
+  lycanroc
+  lycanrocdusk
+  lycanrocmidnight
+  machamp
+  machampgmax
+  machoke
+  machop
+  magby
+  magcargo
+  magearna
+  magearnaoriginal
+  magikarp
+  magmar
+  magmortar
+  magnemite
+  magneton
+  magnezone
+  makuhita
+  malaconda
+  malamar
+  mamoswine
+  manaphy
+  mandibuzz
+  manectric
+  manectricmega
+  mankey
+  mantine
+  mantyke
+  maractus
+  mareanie
+  mareep
+  marill
+  marowak
+  marowakalola
+  marowakalolatotem
+  marshadow
+  marshtomp
+  masquerain
+  mawile
+  mawilemega
+  medicham
+  medichammega
+  meditite
+  meganium
+  melmetal
+  melmetalgmax
+  meloetta
+  meloettapirouette
+  meltan
+  meowstic
+  meowsticf
+  meowth
+  meowthalola
+  meowthgalar
+  meowthgmax
+  mesprit
+  metagross
+  metagrossmega
+  metang
+  metapod
+  mew
+  mewtwo
+  mewtwomegax
+  mewtwomegay
+  miasmaw
+  miasmite
+  mienfoo
+  mienshao
+  mightyena
+  milcery
+  milotic
+  miltank
+  mimejr
+  mimikyu
+  mimikyubusted
+  mimikyubustedtotem
+  mimikyutotem
+  minccino
+  minior
+  miniormeteor
+  minun
+  misdreavus
+  mismagius
+  missingno
+  mollux
+  moltres
+  moltresgalar
+  monferno
+  monohm
+  morelull
+  morgrem
+  morpeko
+  morpekohangry
+  mothim
+  mrmime
+  mrmimegalar
+  mrrime
+  mudbray
+  mudkip
+  mudsdale
+  muk
+  mukalola
+  mumbao
+  munchlax
+  munna
+  murkrow
+  musharna
+  naganadel
+  natu
+  naviathan
+  necrozma
+  necrozmadawnwings
+  necrozmaduskmane
+  necrozmaultra
+  necturine
+  necturna
+  nickit
+  nidoking
+  nidoqueen
+  nidoranf
+  nidoranm
+  nidorina
+  nidorino
+  nihilego
+  nincada
+  ninetales
+  ninetalesalola
+  ninjask
+  noctowl
+  nohface
+  noibat
+  noivern
+  nosepass
+  numel
+  nuzleaf
+  obstagoon
+  octillery
+  oddish
+  omanyte
+  omastar
+  onix
+  oranguru
+  orbeetle
+  orbeetlegmax
+  oricorio
+  oricoriopau
+  oricoriopompom
+  oricoriosensu
+  oshawott
+  overqwil
+  pachirisu
+  pajantom
+  palkia
+  palkiaorigin
+  palossand
+  palpitoad
+  pancham
+  pangoro
+  panpour
+  pansage
+  pansear
+  paras
+  parasect
+  passimian
+  patrat
+  pawniard
+  pelipper
+  perrserker
+  persian
+  persianalola
+  petilil
+  phanpy
+  phantump
+  pheromosa
+  phione
+  pichu
+  pichuspikyeared
+  pidgeot
+  pidgeotmega
+  pidgeotto
+  pidgey
+  pidove
+  pignite
+  pikachu
+  pikachualola
+  pikachubelle
+  pikachucosplay
+  pikachugmax
+  pikachuhoenn
+  pikachukalos
+  pikachulibre
+  pikachuoriginal
+  pikachupartner
+  pikachuphd
+  pikachupopstar
+  pikachurockstar
+  pikachusinnoh
+  pikachustarter
+  pikachuunova
+  pikachuworld
+  pikipek
+  piloswine
+  pincurchin
+  pineco
+  pinsir
+  pinsirmega
+  piplup
+  plasmanta
+  pluffle
+  plusle
+  poipole
+  pokestarblackbelt
+  pokestarblackdoor
+  pokestarbrycenman
+  pokestarf00
+  pokestarf002
+  pokestargiant
+  pokestarhumanoid
+  pokestarmonster
+  pokestarmt
+  pokestarmt2
+  pokestarsmeargle
+  pokestarspirit
+  pokestartransport
+  pokestarufo
+  pokestarufo2
+  pokestarufopropu2
+  pokestarwhitedoor
+  politoed
+  poliwag
+  poliwhirl
+  poliwrath
+  polteageist
+  polteageistantique
+  ponyta
+  ponytagalar
+  poochyena
+  popplio
+  porygon
+  porygon2
+  porygonz
+  primarina
+  primeape
+  prinplup
+  privatyke
+  probopass
+  protowatt
+  psyduck
+  pumpkaboo
+  pumpkaboolarge
+  pumpkaboosmall
+  pumpkaboosuper
+  pupitar
+  purrloin
+  purugly
+  pyroak
+  pyroar
+  pyukumuku
+  quagsire
+  quilava
+  quilladin
+  qwilfish
+  qwilfishhisui
+  raboot
+  raichu
+  raichualola
+  raikou
+  ralts
+  rampardos
+  rapidash
+  rapidashgalar
+  raticate
+  raticatealola
+  raticatealolatotem
+  rattata
+  rattataalola
+  rayquaza
+  rayquazamega
+  rebble
+  regice
+  regidrago
+  regieleki
+  regigigas
+  regirock
+  registeel
+  relicanth
+  remoraid
+  reshiram
+  reuniclus
+  revenankh
+  rhydon
+  rhyhorn
+  rhyperior
+  ribombee
+  ribombeetotem
+  rillaboom
+  rillaboomgmax
+  riolu
+  rockruff
+  roggenrola
+  rolycoly
+  rookidee
+  roselia
+  roserade
+  rotom
+  rotomfan
+  rotomfrost
+  rotomheat
+  rotommow
+  rotomwash
+  rowlet
+  rufflet
+  runerigus
+  sableye
+  sableyemega
+  salamence
+  salamencemega
+  salandit
+  salazzle
+  salazzletotem
+  samurott
+  samurotthisui
+  sandaconda
+  sandacondagmax
+  sandile
+  sandshrew
+  sandshrewalola
+  sandslash
+  sandslashalola
+  sandygast
+  sawk
+  sawsbuck
+  scatterbug
+  sceptile
+  sceptilemega
+  scizor
+  scizormega
+  scolipede
+  scorbunny
+  scrafty
+  scraggy
+  scratchet
+  scyther
+  seadra
+  seaking
+  sealeo
+  seedot
+  seel
+  seismitoad
+  sentret
+  serperior
+  servine
+  seviper
+  sewaddle
+  sharpedo
+  sharpedomega
+  shaymin
+  shayminsky
+  shedinja
+  shelgon
+  shellder
+  shellos
+  shelmet
+  shieldon
+  shiftry
+  shiinotic
+  shinx
+  shroomish
+  shuckle
+  shuppet
+  sigilyph
+  silcoon
+  silicobra
+  silvally
+  silvallybug
+  silvallydark
+  silvallydragon
+  silvallyelectric
+  silvallyfairy
+  silvallyfighting
+  silvallyfire
+  silvallyflying
+  silvallyghost
+  silvallygrass
+  silvallyground
+  silvallyice
+  silvallypoison
+  silvallypsychic
+  silvallyrock
+  silvallysteel
+  silvallywater
+  simipour
+  simisage
+  simisear
+  sinistea
+  sinisteaantique
+  sirfetchd
+  sizzlipede
+  skarmory
+  skiddo
+  skiploom
+  skitty
+  skorupi
+  skrelp
+  skuntank
+  skwovet
+  slaking
+  slakoth
+  sliggoo
+  sliggoohisui
+  slowbro
+  slowbrogalar
+  slowbromega
+  slowking
+  slowkinggalar
+  slowpoke
+  slowpokegalar
+  slugma
+  slurpuff
+  smeargle
+  smogecko
+  smoguana
+  smokomodo
+  smoochum
+  snaelstrom
+  sneasel
+  sneaselhisui
+  sneasler
+  snivy
+  snom
+  snorlax
+  snorlaxgmax
+  snorunt
+  snover
+  snubbull
+  snugglow
+  sobble
+  solgaleo
+  solosis
+  solotl
+  solrock
+  spearow
+  spectrier
+  spewpa
+  spheal
+  spinarak
+  spinda
+  spiritomb
+  spoink
+  spritzee
+  squirtle
+  stakataka
+  stantler
+  staraptor
+  staravia
+  starly
+  starmie
+  staryu
+  steelix
+  steelixmega
+  steenee
+  stonjourner
+  stoutland
+  stratagem
+  stufful
+  stunfisk
+  stunfiskgalar
+  stunky
+  sudowoodo
+  suicune
+  sunflora
+  sunkern
+  surskit
+  swablu
+  swadloon
+  swalot
+  swampert
+  swampertmega
+  swanna
+  swellow
+  swinub
+  swirlix
+  swirlpool
+  swoobat
+  syclant
+  syclar
+  sylveon
+  tactite
+  taillow
+  talonflame
+  tangela
+  tangrowth
+  tapubulu
+  tapufini
+  tapukoko
+  tapulele
+  tauros
+  teddiursa
+  tentacool
+  tentacruel
+  tepig
+  terrakion
+  thievul
+  throh
+  thundurus
+  thundurustherian
+  thwackey
+  timburr
+  tirtouga
+  togedemaru
+  togedemarutotem
+  togekiss
+  togepi
+  togetic
+  tomohawk
+  torchic
+  torkoal
+  tornadus
+  tornadustherian
+  torracat
+  torterra
+  totodile
+  toucannon
+  toxapex
+  toxel
+  toxicroak
+  toxtricity
+  toxtricitygmax
+  toxtricitylowkey
+  toxtricitylowkeygmax
+  tranquill
+  trapinch
+  treecko
+  trevenant
+  tropius
+  trubbish
+  trumbeak
+  tsareena
+  turtonator
+  turtwig
+  tympole
+  tynamo
+  typenull
+  typhlosion
+  typhlosionhisui
+  tyranitar
+  tyranitarmega
+  tyrantrum
+  tyrogue
+  tyrunt
+  umbreon
+  unfezant
+  unown
+  ursaluna
+  ursaring
+  urshifu
+  urshifugmax
+  urshifurapidstrike
+  urshifurapidstrikegmax
+  uxie
+  vanillish
+  vanillite
+  vanilluxe
+  vaporeon
+  venipede
+  venomicon
+  venomiconepilogue
+  venomoth
+  venonat
+  venusaur
+  venusaurgmax
+  venusaurmega
+  vespiquen
+  vibrava
+  victini
+  victreebel
+  vigoroth
+  vikavolt
+  vikavolttotem
+  vileplume
+  virizion
+  vivillon
+  vivillonfancy
+  vivillonpokeball
+  volbeat
+  volcanion
+  volcarona
+  volkraken
+  volkritter
+  voltorb
+  voltorbhisui
+  voodoll
+  voodoom
+  vullaby
+  vulpix
+  vulpixalola
+  wailmer
+  wailord
+  walrein
+  wartortle
+  watchog
+  weavile
+  weedle
+  weepinbell
+  weezing
+  weezinggalar
+  whimsicott
+  whirlipede
+  whiscash
+  whismur
+  wigglytuff
+  wimpod
+  wingull
+  wishiwashi
+  wishiwashischool
+  wobbuffet
+  woobat
+  wooloo
+  wooper
+  wormadam
+  wormadamsandy
+  wormadamtrash
+  wurmple
+  wynaut
+  wyrdeer
+  xatu
+  xerneas
+  xerneasneutral
+  xurkitree
+  yamask
+  yamaskgalar
+  yamper
+  yanma
+  yanmega
+  yungoos
+  yveltal
+  zacian
+  zaciancrowned
+  zamazenta
+  zamazentacrowned
+  zangoose
+  zapdos
+  zapdosgalar
+  zarude
+  zarudedada
+  zebstrika
+  zekrom
+  zeraora
+  zigzagoon
+  zigzagoongalar
+  zoroark
+  zoroarkhisui
+  zorua
+  zoruahisui
+  zubat
+  zweilous
+  zygarde
+  zygarde10
+  zygardecomplete
+}
+
+type Query {
+  """Gets the details on a Pokémon ability, using the ability name"""
+  getAbility(
+    """The ability to look up"""
+    ability: AbilitiesEnum!
+  ): Ability!
+
+  """
+  Returns a list of all the known Pokémon. This query supports no arguments can it be 
+  """
+  getAllPokemonSpecies(
+    """Sets the offset where to start"""
+    offset: Int = 0
+
+    """Reverses the dataset before paginating"""
+    reverse: Boolean = false
+
+    """Return only this many results, starting from the offset"""
+    take: Int = 1271
+  ): [String!]!
+
+  """
+  Gets details on a Pokémon ability, using a fuzzy search on name
+  This can be used to find multiple results based on the query
+  By default only 1 result is returned. You can provide the arguments "take", "offset", and "reverse" to modify this behaviour.
+  """
+  getFuzzyAbility(
+    """The ability to fuzzily search"""
+    ability: String!
+
+    """Sets the offset where to start"""
+    offset: Int = 0
+
+    """Reverses the dataset before paginating"""
+    reverse: Boolean = false
+
+    """Return only this many results, starting from the offset"""
+    take: Int = 1
+  ): [Ability!]!
+
+  """
+  Gets details on a Pokémon item, using a fuzzy search on name
+  This can be used to find multiple results based on the query
+  By default only 1 result is returned. You can provide the arguments "take", "offset", and "reverse" to modify this behaviour.
+  """
+  getFuzzyItem(
+    """The item to fuzzily search"""
+    item: String!
+
+    """Sets the offset where to start"""
+    offset: Int = 0
+
+    """Reverses the dataset before paginating"""
+    reverse: Boolean = false
+
+    """Return only this many results, starting from the offset"""
+    take: Int = 1
+  ): [Item!]!
+
+  """
+  Gets the learnset for a given Pokémon and move.A fuzzy search is performed to find a matching Pokémon and moveMultiple moves are possible by putting them in an array: [move1, move2].You can also apply a generation filter (only results for the given generation will be returned) with the generation argument
+  """
+  getFuzzyLearnset(
+    """The generation filter to apply"""
+    generation: Int
+
+    """The moves to match against the Pokémon"""
+    moves: [String!]!
+
+    """The Pokémon for which to get the learnset"""
+    pokemon: String!
+  ): Learnset!
+
+  """
+  Gets details on a Pokémon move, using a fuzzy search on name
+  This can be used to find multiple results based on the query
+  By default only 1 result is returned. You can provide the arguments "take", "offset", and "reverse" to modify this behaviour.
+  """
+  getFuzzyMove(
+    """The move to fuzzily search"""
+    move: String!
+
+    """Sets the offset where to start"""
+    offset: Int = 0
+
+    """Reverses the dataset before paginating"""
+    reverse: Boolean = false
+
+    """Return only this many results, starting from the offset"""
+    take: Int = 1
+  ): [Move!]!
+
+  """
+  Gets details on one or more Pokémon based on species name
+  You can provide "take" to limit the amount of Pokémon to return (default: 1), set the offset of where to start with "offset", and reverse the entire array with "reverse".
+  You can provide "takeFlavorTexts" to limit the amount of flavour texts to return (default: 1), set the offset of where to start with "offsetFlavorTexts", and reverse the entire array with "reverseFlavorTexts".
+  Reversal is applied before pagination!
+  """
+  getFuzzyPokemon(
+    """Sets the offset where to start"""
+    offset: Int = 0
+
+    """Sets the offset from where to start."""
+    offsetFlavorTexts: Int = 0
+
+    """The Pokémon to fuzzily search"""
+    pokemon: String!
+
+    """Reverses the dataset before paginating"""
+    reverse: Boolean = false
+
+    """
+    Whether to reverse the list of games from which to get the data. By default Generation 1 is considered for "take" first, when setting this to true that is instead Generation 8.
+    """
+    reverseFlavorTexts: Boolean = true
+
+    """Return only this many results, starting from the offset"""
+    take: Int = 1
+
+    """
+    Return this many flavour texts, up to the maximum of entries that the requested Pokémon has.
+    """
+    takeFlavorTexts: Int = 1
+  ): [Pokemon!]!
+
+  """Gets the details on a Pokémon item, using the item name"""
+  getItem(
+    """The item to look up"""
+    item: ItemsEnum!
+  ): Item!
+
+  """
+  Gets the learnsets for a given Pokémon and move.Multiple moves are possible by putting them in an array: [move1, move2].You can also apply a generation filter (only results for the given generation will be returned) with the generation argument
+  """
+  getLearnset(
+    """The generation filter to apply"""
+    generation: Int
+
+    """The moves to match against the Pokémon"""
+    moves: [MovesEnum!]!
+
+    """The Pokémon for which to get the learnset"""
+    pokemon: PokemonEnum!
+  ): Learnset!
+
+  """Gets the details on a Pokémon move, using the move name"""
+  getMove(
+    """The move to look up"""
+    move: MovesEnum!
+  ): Move!
+
+  """
+  Gets details on a single Pokémon based on species name
+  You can provide "takeFlavorTexts" to limit the amount of flavour texts to return, set the offset of where to start with "offsetFlavorTexts", and reverse the entire array with "reverseFlavorTexts".
+  Reversal is applied before pagination!
+  """
+  getPokemon(
+    """Sets the offset from where to start."""
+    offsetFlavorTexts: Int = 0
+
+    """The Pokémon to look up"""
+    pokemon: PokemonEnum!
+
+    """
+    Whether to reverse the list of games from which to get the data. By default Generation 1 is considered for "take" first, when setting this to true that is instead Generation 8.
+    """
+    reverseFlavorTexts: Boolean = true
+
+    """
+    Return this many flavour texts, up to the maximum of entries that the requested Pokémon has.
+    """
+    takeFlavorTexts: Int = 1
+  ): Pokemon!
+
+  """
+  Gets details on a single Pokémon based on National Pokédex number
+  You can provide "takeFlavorTexts" to limit the amount of flavour texts to return, set the offset of where to start with "offsetFlavorTexts", and reverse the entire array with "reverseFlavorTexts".
+  Reversal is applied before pagination!
+  """
+  getPokemonByDexNumber(
+    """The International PokéDex number of the Pokémon to look up"""
+    number: Int!
+
+    """Sets the offset from where to start."""
+    offsetFlavorTexts: Int = 0
+
+    """
+    Whether to reverse the list of games from which to get the data. By default Generation 1 is considered for "take" first, when setting this to true that is instead Generation 8.
+    """
+    reverseFlavorTexts: Boolean = true
+
+    """
+    Return this many flavour texts, up to the maximum of entries that the requested Pokémon has.
+    """
+    takeFlavorTexts: Int = 1
+  ): Pokemon!
+
+  """Gets the type matchup data for the given type or types"""
+  getTypeMatchup(
+    """The types to check"""
+    types: [TypesEnum!]!
+  ): TypeMatchup!
+}
+
+"""A Pokémon's stats"""
+type Stats {
+  """The base attack stat of a Pokémon"""
+  attack: Int!
+
+  """The base defense stat of a Pokémon"""
+  defense: Int!
+
+  """The base HP stat of a pokémon"""
+  hp: Int!
+
+  """The base special attack stat of a Pokémon"""
+  specialattack: Int!
+
+  """The base special defense stat of a Pokémon"""
+  specialdefense: Int!
+
+  """The base speed stat of a Pokémon"""
+  speed: Int!
+}
+
+"""A type matchup entry"""
+type Type {
+  """The types with 4x effectiveness"""
+  doubleEffectiveTypes: [String!]!
+
+  """The types with 0.25x effectiveness"""
+  doubleResistedTypes: [String!]!
+
+  """The types with 2x effectiveness"""
+  effectiveTypes: [String!]!
+
+  """The types with 0x effectiveness"""
+  effectlessTypes: [String!]!
+
+  """The types with 1x effectiveness"""
+  normalTypes: [String!]!
+
+  """The types with 0.5x effectiveness"""
+  resistedTypes: [String!]!
+}
+
+"""The type matchups for any one or two given types"""
+type TypeMatchup {
+  """The type matchups when attacking"""
+  attacking: Type!
+
+  """The type matchups when defending"""
+  defending: Type!
+}
+
+"""The types in Pokémon"""
+enum TypesEnum {
+  bug
+  dark
+  dragon
+  electric
+  fairy
+  fighting
+  fire
+  flying
+  ghost
+  grass
+  ground
+  ice
+  normal
+  poison
+  psychic
+  rock
+  steel
+  water
+}

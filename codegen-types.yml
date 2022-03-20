@@ -1,0 +1,22 @@
+schema: "https://graphqlpokemon.favware.tech/"
+documents:
+  - "./src/Queries/*Queries.tsx"
+  - "./src/Queries/Fragments/*Fragments.tsx"
+config:
+  scalars:
+    Guid: string
+    DateTime: string
+    Date: string
+generates:
+  ./src/GraphQL/codegen-types.ts:
+    plugins:
+      - typescript
+      - typescript-apollo-client-helpers
+      - typescript-operations
+      - named-operations-object
+    config:
+      maybeValue: T
+      strictScalars: true
+      nonOptionalTypename: true
+      namingConvention:
+        enumValues: change-case-all#upperCase

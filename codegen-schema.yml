@@ -1,0 +1,6 @@
+schema: "https://graphqlpokemon.favware.tech/"
+config:
+generates:
+  ./src/GraphQL/codegen-schema.graphql:
+    plugins:
+      - schema-ast
