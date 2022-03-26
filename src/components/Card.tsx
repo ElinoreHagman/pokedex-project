@@ -8,52 +8,82 @@ import {
 import styled from "styled-components";
 import getTypeBackground from "../Functions/GetTypeBackground";
 import Ability from "./Ability";
-import TypeMatchup from "./TypeMatchup";
-import ReactCardFlip from "react-card-flip";
-import { useState } from "react";
-import { Box } from "@mui/system";
+import { Avatar } from "@mui/material";
+import getTypeIcon from "../Functions/GetTypeIcon";
+import getTexture from "../Functions/GetTexture";
 
 interface CardBackground {
   back?: boolean;
+  type?: TypeTexture;
+}
+
+interface TypeTexture {
+  image: string;
+  blackText: boolean;
 }
 
 const CardHolder = styled.div<CardBackground>`
   cursor: pointer;
   position: relative;
-  width: ${(props) => (props.back ? "225px" : "215px")};
-  height: ${(props) => (props.back ? "310px" : "300px")};
-  background: #ffffff;
+  margin: auto;
+  width: 90%;
+  height: calc(100vw * 0.55);
+  max-height: 300px;
+  max-width: 230px;
   border-radius: 10px;
-  margin: 5px;
-  border: ${(props) => (props.back ? "none" : "5px solid #ffcb05")};
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  color: black;
+  color: ${(props) => (props.type?.blackText ? "#000000" : "#ffffff")};
   background: ${(props) =>
-    props.back ? "url('Assets/pokemonCard_back.png')" : "white"};
+    props.back
+      ? "url('Assets/pokemonCard_back.png')"
+      : `url(${props.type?.image})`};
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+  background-size: 100% 100%;
+`;
+
+const Border = styled.div`
+  height: 100%;
+  border: 5px solid #ffde00;
 `;
 
 const Header = styled.div`
   position: relative;
-  padding: 3px 0 1px 0;
+  padding: 2px;
   display: flex;
-  margin: 0 5px 0 45px;
   justify-content: space-between;
   align-items: center;
 `;
 
 const Title = styled.h1`
   margin: 0;
-  font-size: 16px;
-  color: black;
+  font-size: 70%;
 `;
 
 const Hp = styled.div`
   width: fit-content;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 70%;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  padding-right: 2px;
+  h3 {
+    margin: 0;
+    font-size: 50%;
+    font-weight: 300;
+  }
+`;
+
+const Right = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const TypeGroup = styled.div`
+  display: flex;
 `;
 
 interface Background {
@@ -62,38 +92,34 @@ interface Background {
 
 const ImageWrapper = styled.div<Background>`
   position: relative;
-  margin: 2px 5px 5px 5px;
-  height: 80px;
+  margin: 1px 5px 0px 5px;
+  height: 35%;
   box-sizing: border-box;
   background-image: url(${(props) => props.background});
   background-size: cover;
   background-position: top;
-  padding: 50px;
-  border: 2px solid #ffcb05;
+  padding: 5px;
+  border: 2px solid #b3a125;
+  align-items: center;
+  border-radius: 30% 2px 2px 2px;
 `;
 
 const Banner = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-around;
-  margin: auto;
-  margin: 5px;
-  padding: 1px 5px;
-  margin-top: -3px;
-  font-size: 10px;
-  background: #e3e3e3;
-  color: black;
+  justify-content: space-between;
+  margin: 0 5px;
+  padding: 1px 2px;
+  font-size: min(2vw, 10px);
+  border-bottom: 1px solid #ffde00;
+  align-items: center;
 `;
 
 const Description = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: white;
-  color: black;
-  font-size: 10px;
-  margin: 10px;
+  margin: 5px 5px;
   align-items: center;
   justify-content: center;
   p {
@@ -112,20 +138,26 @@ const Sprite = styled.img`
   transform: translate(-50%, -50%);
 `;
 
-const PreevolutionSprite = styled.div`
-  width: 30px;
-  height: 30px;
+const PreevolutionSprite = styled.div<Background>`
+  width: min(5vw, 30px);
+  height: min(5vw, 30px);
   border-radius: 50%;
   position: absolute;
-  background: #999999;
-  left: 0;
-  top: -22px;
+  background-image: url(${(props) => props.background});
+  background-size: cover;
+  background-position: top;
+  left: 0px;
+  top: -2px;
   margin: 0px;
   overflow: hidden;
-  border: 2px solid #ffcb05;
+  border: 1px solid #b3a125;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
-    width: 20px;
+    max-width: min(5vw, 30px);
+    max-height: 30px;
   }
 `;
 
@@ -140,7 +172,6 @@ const Card = ({ pokemonId }: CardProps) => {
   >(GET_POKEMON_BY_NUMBER, {
     variables: { number: pokemonId },
   });
-  const [isFlipped, toggleFlipped] = useState(false);
 
   if (loading) return null;
   const pokemon = data?.getPokemonByDexNumber!;
@@ -154,45 +185,64 @@ const Card = ({ pokemonId }: CardProps) => {
   }
 
   return (
-    <Box>
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <CardHolder back onClick={() => toggleFlipped(true)}></CardHolder>
-        <CardHolder onClick={() => toggleFlipped(false)}>
-          <Header>
-            <Title>{capitalizeFirstLetter(pokemon.species!)}</Title>
-            <Hp>{pokemon.baseStats.hp} HP</Hp>
-          </Header>
-          <ImageWrapper background={getTypeBackground(pokemon.types[0]!)}>
-            <Sprite alt={pokemon.species} src={pokemon.sprite} />
-            {pokemon.preevolutions && (
-              <div>
-                <PreevolutionSprite>
-                  <img
-                    alt={
-                      pokemon.preevolutions?.at(pokemon.preevolutions?.length!)
-                        ?.species
-                    }
-                    src={pokemon.preevolutions?.at(0)?.sprite}
-                  />
-                </PreevolutionSprite>
-              </div>
-            )}
-          </ImageWrapper>
-          <Banner>
-            <span>no. {pokemon.num}</span>
-            <span>{pokemon.height}m</span>
-            <span>{pokemon.weight}kg</span>
-          </Banner>
-          <Description>
-            <Ability abilityName={pokemon.abilities.first}></Ability>
-            {pokemon.abilities.second && (
-              <Ability abilityName={pokemon.abilities.second!}></Ability>
-            )}
-          </Description>
-          <TypeMatchup types={types} />
-        </CardHolder>
-      </ReactCardFlip>
-    </Box>
+    <CardHolder
+      type={getTexture(pokemon!.types[0])}
+      /*       onClick={() => setSelectedPokemon(data)}
+       */
+    >
+      <Border>
+        <Header>
+          <Title>{capitalizeFirstLetter(pokemon!.species!)}</Title>
+          <Right>
+            <Hp>
+              <h3>HP</h3>
+              {pokemon!.baseStats.hp}
+            </Hp>
+          </Right>
+        </Header>
+        <ImageWrapper background={getTypeBackground(pokemon!.types[0]!)}>
+          <Sprite alt={pokemon!.species} src={pokemon!.sprite} />
+          {pokemon!.preevolutions && (
+            <PreevolutionSprite
+              background={getTypeBackground(
+                pokemon!.preevolutions[0].types[0]!
+              )}
+            >
+              <img
+                alt={
+                  pokemon!.preevolutions?.at(pokemon!.preevolutions?.length!)
+                    ?.species
+                }
+                src={pokemon!.preevolutions?.at(0)?.sprite}
+              />
+            </PreevolutionSprite>
+          )}
+        </ImageWrapper>
+        <Banner>
+          <span>no. {pokemon!.num}</span>
+          <span>{pokemon!.height}m</span>
+          <span>{pokemon!.weight}kg</span>
+          <TypeGroup>
+            {pokemon!.types.map((type: string) => {
+              return (
+                <Avatar
+                  sx={{ width: 9, height: 9 }}
+                  alt={type}
+                  key={type}
+                  src={getTypeIcon(type)}
+                />
+              );
+            })}
+          </TypeGroup>
+        </Banner>
+        <Description>
+          <Ability abilityName={pokemon!.abilities.first}></Ability>
+          {pokemon!.abilities.second && (
+            <Ability abilityName={pokemon!.abilities.second!}></Ability>
+          )}
+        </Description>
+      </Border>
+    </CardHolder>
   );
 };
 

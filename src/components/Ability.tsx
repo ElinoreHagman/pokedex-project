@@ -8,8 +8,8 @@ import { GET_ABILITY_PARTIAL_FUZZY } from "../GraphQL/Queries/AbilityQueries";
 
 const Description = styled.div`
   text-align: left;
-  margin-bottom: 7px;
-  font-size: 10px;
+  margin-bottom: 4px;
+  font-size: min(2vw, 10px);
   height: fit-content;
   span:first-child {
     font-weight: bold;

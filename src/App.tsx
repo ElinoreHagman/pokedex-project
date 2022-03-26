@@ -1,23 +1,22 @@
 import "./App.css";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./ApolloClient/client";
-import { CardCollection } from "./components/CardCollection";
-import styled from "styled-components";
-
-const Title = styled.div`
-  font-size: 36px;
-  font-weight: bold;
-  color: #ffcb05;
-`;
+import { Navigation } from "./components/Navigation";
+import Content from "./components/Content";
+import { Header } from "./components/Header";
+import React from "react";
 
 function App() {
+  const [pageIndex, setPageIndex] = React.useState(0);
+
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <header className="App-header">
-          <Title>Shuffle A Random Pokemon Card Deck</Title>
-          <CardCollection />
-        </header>
+        <div className="App-background"></div>
+        <div className="App-background-cover"></div>
+        <Header pageIndex={pageIndex} />
+        <Content pageIndex={pageIndex} />
+        <Navigation setPageIndex={setPageIndex} pageIndex={pageIndex} />
       </div>
     </ApolloProvider>
   );
