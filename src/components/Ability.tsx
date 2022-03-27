@@ -30,12 +30,12 @@ const Ability = ({ abilityName }: AbilityProps) => {
   });
 
   if (loading) return null;
-  const ability = data?.getFuzzyAbility.at(0)!;
+  const ability = data?.getFuzzyAbility[0];
 
   return (
     <Description>
-      <span>{ability.name}</span>
-      <span>{ability.shortDesc}</span>
+      <span>{ability?.name}</span>
+      <span>{ability?.shortDesc}</span>
     </Description>
   );
 };

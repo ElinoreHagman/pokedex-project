@@ -204,30 +204,29 @@ const Card = ({ pokemonId }: CardProps) => {
               </Hp>
             </Right>
           </Header>
-          <ImageWrapper background={getTypeBackground(pokemon!.types[0]!)}>
-            <Sprite alt={pokemon!.species} src={pokemon!.sprite} />
-            {pokemon!.preevolutions && (
+          <ImageWrapper background={getTypeBackground(pokemon.types[0])}>
+            <Sprite alt={pokemon.species} src={pokemon.sprite} />
+            {pokemon.preevolutions && (
               <PreevolutionSprite
                 background={getTypeBackground(
-                  pokemon!.preevolutions[0].types[0]!
+                  pokemon.preevolutions[0].types[0]
                 )}
               >
                 <img
                   alt={
-                    pokemon!.preevolutions?.at(pokemon!.preevolutions?.length!)
-                      ?.species
+                    pokemon.preevolutions[pokemon.preevolutions.length]?.species
                   }
-                  src={pokemon!.preevolutions?.at(0)?.sprite}
+                  src={pokemon!.preevolutions[0].sprite}
                 />
               </PreevolutionSprite>
             )}
           </ImageWrapper>
           <Banner>
-            <span>no. {pokemon!.num}</span>
-            <span>{pokemon!.height}m</span>
-            <span>{pokemon!.weight}kg</span>
+            <span>no. {pokemon.num}</span>
+            <span>{pokemon.height}m</span>
+            <span>{pokemon.weight}kg</span>
             <TypeGroup>
-              {pokemon!.types.map((type: string) => {
+              {pokemon.types.map((type: string) => {
                 return (
                   <Avatar
                     sx={{ width: 9, height: 9 }}
@@ -240,9 +239,9 @@ const Card = ({ pokemonId }: CardProps) => {
             </TypeGroup>
           </Banner>
           <Description>
-            <Ability abilityName={pokemon!.abilities.first}></Ability>
-            {pokemon!.abilities.second && (
-              <Ability abilityName={pokemon!.abilities.second!}></Ability>
+            <Ability abilityName={pokemon.abilities.first}></Ability>
+            {pokemon.abilities.second && (
+              <Ability abilityName={pokemon.abilities.second!}></Ability>
             )}
           </Description>
         </Border>
