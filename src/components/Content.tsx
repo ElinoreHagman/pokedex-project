@@ -3,7 +3,8 @@ import { CardCollection } from "./CardCollection";
 import { Search } from "./Search";
 
 const Wrapper = styled.div`
-  width: 1000px;
+  max-width: 1000px;
+  min-width: 90%;
   flex: auto;
   margin: auto;
   padding: 20px 5px;

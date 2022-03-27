@@ -22,6 +22,8 @@ interface TypeTexture {
   blackText: boolean;
 }
 
+const Wrapper = styled.div``;
+
 const CardHolder = styled.div<CardBackground>`
   cursor: pointer;
   position: relative;
@@ -74,6 +76,7 @@ const Hp = styled.div`
     margin: 0;
     font-size: 50%;
     font-weight: 300;
+    padding-right: 1px;
   }
 `;
 
@@ -185,64 +188,66 @@ const Card = ({ pokemonId }: CardProps) => {
   }
 
   return (
-    <CardHolder
-      type={getTexture(pokemon!.types[0])}
-      /*       onClick={() => setSelectedPokemon(data)}
-       */
-    >
-      <Border>
-        <Header>
-          <Title>{capitalizeFirstLetter(pokemon!.species!)}</Title>
-          <Right>
-            <Hp>
-              <h3>HP</h3>
-              {pokemon!.baseStats.hp}
-            </Hp>
-          </Right>
-        </Header>
-        <ImageWrapper background={getTypeBackground(pokemon!.types[0]!)}>
-          <Sprite alt={pokemon!.species} src={pokemon!.sprite} />
-          {pokemon!.preevolutions && (
-            <PreevolutionSprite
-              background={getTypeBackground(
-                pokemon!.preevolutions[0].types[0]!
-              )}
-            >
-              <img
-                alt={
-                  pokemon!.preevolutions?.at(pokemon!.preevolutions?.length!)
-                    ?.species
-                }
-                src={pokemon!.preevolutions?.at(0)?.sprite}
-              />
-            </PreevolutionSprite>
-          )}
-        </ImageWrapper>
-        <Banner>
-          <span>no. {pokemon!.num}</span>
-          <span>{pokemon!.height}m</span>
-          <span>{pokemon!.weight}kg</span>
-          <TypeGroup>
-            {pokemon!.types.map((type: string) => {
-              return (
-                <Avatar
-                  sx={{ width: 9, height: 9 }}
-                  alt={type}
-                  key={type}
-                  src={getTypeIcon(type)}
+    <Wrapper>
+      <CardHolder
+        type={getTexture(pokemon!.types[0])}
+        /*       onClick={() => setSelectedPokemon(data)}
+         */
+      >
+        <Border>
+          <Header>
+            <Title>{capitalizeFirstLetter(pokemon!.species!)}</Title>
+            <Right>
+              <Hp>
+                <h3>HP</h3>
+                {pokemon!.baseStats.hp}
+              </Hp>
+            </Right>
+          </Header>
+          <ImageWrapper background={getTypeBackground(pokemon!.types[0]!)}>
+            <Sprite alt={pokemon!.species} src={pokemon!.sprite} />
+            {pokemon!.preevolutions && (
+              <PreevolutionSprite
+                background={getTypeBackground(
+                  pokemon!.preevolutions[0].types[0]!
+                )}
+              >
+                <img
+                  alt={
+                    pokemon!.preevolutions?.at(pokemon!.preevolutions?.length!)
+                      ?.species
+                  }
+                  src={pokemon!.preevolutions?.at(0)?.sprite}
                 />
-              );
-            })}
-          </TypeGroup>
-        </Banner>
-        <Description>
-          <Ability abilityName={pokemon!.abilities.first}></Ability>
-          {pokemon!.abilities.second && (
-            <Ability abilityName={pokemon!.abilities.second!}></Ability>
-          )}
-        </Description>
-      </Border>
-    </CardHolder>
+              </PreevolutionSprite>
+            )}
+          </ImageWrapper>
+          <Banner>
+            <span>no. {pokemon!.num}</span>
+            <span>{pokemon!.height}m</span>
+            <span>{pokemon!.weight}kg</span>
+            <TypeGroup>
+              {pokemon!.types.map((type: string) => {
+                return (
+                  <Avatar
+                    sx={{ width: 9, height: 9 }}
+                    alt={type}
+                    key={type}
+                    src={getTypeIcon(type)}
+                  />
+                );
+              })}
+            </TypeGroup>
+          </Banner>
+          <Description>
+            <Ability abilityName={pokemon!.abilities.first}></Ability>
+            {pokemon!.abilities.second && (
+              <Ability abilityName={pokemon!.abilities.second!}></Ability>
+            )}
+          </Description>
+        </Border>
+      </CardHolder>
+    </Wrapper>
   );
 };
 
