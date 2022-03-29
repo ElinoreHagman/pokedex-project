@@ -16,7 +16,21 @@ type Props = {
 };
 
 const Content = ({ pageIndex }: Props) => {
-  return <Wrapper>{pageIndex === 0 ? <CardCollection /> : <Search />}</Wrapper>;
+  let pokemonList: number[] = [];
+  while (pokemonList.length < 5) {
+    let r = Math.floor(Math.random() * 898) + 1;
+    if (pokemonList.indexOf(r) === -1) pokemonList.push(r);
+  }
+
+  return (
+    <Wrapper>
+      {pageIndex === 0 ? (
+        <CardCollection pokemonList={pokemonList} />
+      ) : (
+        <Search />
+      )}
+    </Wrapper>
+  );
 };
 
 export default Content;

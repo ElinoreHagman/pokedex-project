@@ -15,6 +15,7 @@ import getTexture from "../Functions/GetTexture";
 interface CardBackground {
   back?: boolean;
   type?: TypeTexture;
+  xl?: boolean;
 }
 
 interface TypeTexture {
@@ -22,16 +23,20 @@ interface TypeTexture {
   blackText: boolean;
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+`;
 
 const CardHolder = styled.div<CardBackground>`
   cursor: pointer;
   position: relative;
   margin: auto;
-  width: 90%;
-  height: calc(100vw * 0.55);
-  max-height: 300px;
-  max-width: 230px;
+  width: ${(props) => (props.xl ? "100%" : "90%")};
+  height: ${(props) => (props.xl ? "100%" : "calc(100vw * 0.55)")};
+  max-height: ${(props) => (props.xl ? "500px" : "300px")};
+  max-width: ${(props) => (props.xl ? "400px" : "230px")};
+
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -166,9 +171,10 @@ const PreevolutionSprite = styled.div<Background>`
 
 interface CardProps {
   pokemonId: number;
+  xl?: boolean;
 }
 
-const Card = ({ pokemonId }: CardProps) => {
+const Card = ({ pokemonId, xl }: CardProps) => {
   const { loading, data } = useQuery<
     GetPokemonByDexNumberQuery,
     GetPokemonByDexNumberQueryVariables
@@ -187,13 +193,14 @@ const Card = ({ pokemonId }: CardProps) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  // For instances like Farfetch'd-galar
+  function formatName(string: string) {
+    return string.replace(/'/g, "");
+  }
+
   return (
     <Wrapper>
-      <CardHolder
-        type={getTexture(pokemon!.types[0])}
-        /*       onClick={() => setSelectedPokemon(data)}
-         */
-      >
+      <CardHolder xl={xl} type={getTexture(pokemon!.types[0])}>
         <Border>
           <Header>
             <Title>{capitalizeFirstLetter(pokemon!.species!)}</Title>
@@ -205,7 +212,7 @@ const Card = ({ pokemonId }: CardProps) => {
             </Right>
           </Header>
           <ImageWrapper background={getTypeBackground(pokemon.types[0])}>
-            <Sprite alt={pokemon.species} src={pokemon.sprite} />
+            <Sprite alt={pokemon.species} src={formatName(pokemon.sprite)} />
             {pokemon.preevolutions && (
               <PreevolutionSprite
                 background={getTypeBackground(
@@ -216,7 +223,7 @@ const Card = ({ pokemonId }: CardProps) => {
                   alt={
                     pokemon.preevolutions[pokemon.preevolutions.length]?.species
                   }
-                  src={pokemon!.preevolutions[0].sprite}
+                  src={formatName(pokemon!.preevolutions[0].sprite)}
                 />
               </PreevolutionSprite>
             )}
@@ -229,7 +236,7 @@ const Card = ({ pokemonId }: CardProps) => {
               {pokemon.types.map((type: string) => {
                 return (
                   <Avatar
-                    sx={{ width: 9, height: 9 }}
+                    sx={{ width: 10, height: 10 }}
                     alt={type}
                     key={type}
                     src={getTypeIcon(type)}
