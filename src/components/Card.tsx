@@ -8,9 +8,22 @@ import {
 import styled from "styled-components";
 import getTypeBackground from "../Functions/GetTypeBackground";
 import Ability from "./Ability";
-import { Avatar } from "@mui/material";
+import {
+  Avatar,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Tooltip,
+} from "@mui/material";
 import getTypeIcon from "../Functions/GetTypeIcon";
 import getTexture from "../Functions/GetTexture";
+import TypeMatchup from "./TypeMatchup";
+import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
+import SaveIcon from "@mui/icons-material/Save";
+import PrintIcon from "@mui/icons-material/Print";
+import ShareIcon from "@mui/icons-material/Share";
+import MenuIcon from "@mui/icons-material/Menu";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface CardBackground {
   back?: boolean;
@@ -28,6 +41,12 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
+const Menu = styled(SpeedDial)`
+  && button {
+    background-color: #cc0000;
+  }
+`;
+
 const CardHolder = styled.div<CardBackground>`
   cursor: pointer;
   position: relative;
@@ -36,7 +55,6 @@ const CardHolder = styled.div<CardBackground>`
   height: ${(props) => (props.xl ? "100%" : "calc(100vw * 0.55)")};
   max-height: ${(props) => (props.xl ? "500px" : "300px")};
   max-width: ${(props) => (props.xl ? "400px" : "230px")};
-
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -52,9 +70,10 @@ const CardHolder = styled.div<CardBackground>`
   background-size: 100% 100%;
 `;
 
-const Border = styled.div`
+const Border = styled.div<Size>`
   height: 100%;
   border: 5px solid #ffde00;
+  padding: ${(props) => (props.xl ? "5px" : "0")};
 `;
 
 const Header = styled.div`
@@ -65,12 +84,12 @@ const Header = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<Size>`
   margin: 0;
-  font-size: 70%;
+  font-size: ${(props) => (props.xl ? "18px" : "70%")};
 `;
 
-const Hp = styled.div`
+const Hp = styled.div<Size>`
   width: fit-content;
   font-size: 70%;
   font-weight: 700;
@@ -96,6 +115,7 @@ const TypeGroup = styled.div`
 
 interface Background {
   background: string;
+  xl?: boolean;
 }
 
 const ImageWrapper = styled.div<Background>`
@@ -112,13 +132,13 @@ const ImageWrapper = styled.div<Background>`
   border-radius: 30% 2px 2px 2px;
 `;
 
-const Banner = styled.div`
+const Banner = styled.div<Size>`
   position: relative;
   display: flex;
   justify-content: space-between;
   margin: 0 5px;
-  padding: 1px 2px;
-  font-size: min(2vw, 10px);
+  padding: ${(props) => (props.xl ? "3px 2px" : "1px 2px")};
+  font-size: ${(props) => (props.xl ? "10px" : "min(2vw, 10px)")};
   border-bottom: 1px solid #ffde00;
   align-items: center;
 `;
@@ -135,6 +155,10 @@ const Description = styled.div`
   }
 `;
 
+interface Size {
+  xl?: boolean;
+}
+
 const Sprite = styled.img`
   max-height: 90%;
   border-radius: 3px;
@@ -147,8 +171,8 @@ const Sprite = styled.img`
 `;
 
 const PreevolutionSprite = styled.div<Background>`
-  width: min(5vw, 30px);
-  height: min(5vw, 30px);
+  width: ${(props) => (props.xl ? "45px" : "min(5vw, 30px)")};
+  height: ${(props) => (props.xl ? "45px" : "min(5vw, 30px)")};
   border-radius: 50%;
   position: absolute;
   background-image: url(${(props) => props.background});
@@ -164,8 +188,8 @@ const PreevolutionSprite = styled.div<Background>`
   justify-content: center;
   align-items: center;
   img {
-    max-width: min(5vw, 30px);
-    max-height: 30px;
+    max-width: ${(props) => (props.xl ? "50px" : "min(5vw, 30px)")};
+    max-height: ${(props) => (props.xl ? "90%" : "30px")};
   }
 `;
 
@@ -185,7 +209,7 @@ const Card = ({ pokemonId, xl }: CardProps) => {
   if (loading) return null;
   const pokemon = data?.getPokemonByDexNumber!;
 
-  const types: TypesEnum[] = pokemon.types.map(
+  const types: TypesEnum[] = pokemon.types?.map(
     (x: string) => x.toLowerCase() as TypesEnum
   );
 
@@ -198,61 +222,101 @@ const Card = ({ pokemonId, xl }: CardProps) => {
     return string.replace(/'/g, "");
   }
 
+  const actions = [
+    { icon: <SaveIcon sx={{ color: "white" }} />, name: "Save" },
+    { icon: <DeleteIcon sx={{ color: "white" }} />, name: "Remove" },
+  ];
+
   return (
     <Wrapper>
       <CardHolder xl={xl} type={getTexture(pokemon!.types[0])}>
-        <Border>
+        <Border xl={xl}>
           <Header>
-            <Title>{capitalizeFirstLetter(pokemon!.species!)}</Title>
+            <Title xl={xl}>{capitalizeFirstLetter(pokemon!.species!)}</Title>
             <Right>
-              <Hp>
+              <Hp xl={xl}>
                 <h3>HP</h3>
                 {pokemon!.baseStats.hp}
               </Hp>
             </Right>
           </Header>
-          <ImageWrapper background={getTypeBackground(pokemon.types[0])}>
+          <ImageWrapper
+            xl={xl}
+            background={getTypeBackground(pokemon.types[0])}
+          >
             <Sprite alt={pokemon.species} src={formatName(pokemon.sprite)} />
             {pokemon.preevolutions && (
-              <PreevolutionSprite
-                background={getTypeBackground(
-                  pokemon.preevolutions[0].types[0]
-                )}
+              <Tooltip
+                title={capitalizeFirstLetter(pokemon.preevolutions[0].species)}
               >
-                <img
-                  alt={
-                    pokemon.preevolutions[pokemon.preevolutions.length]?.species
-                  }
-                  src={formatName(pokemon!.preevolutions[0].sprite)}
-                />
-              </PreevolutionSprite>
+                <PreevolutionSprite
+                  xl={xl}
+                  background={getTypeBackground(
+                    pokemon.preevolutions[0].types[0]
+                  )}
+                >
+                  <img
+                    alt={
+                      pokemon.preevolutions[pokemon.preevolutions.length]
+                        ?.species
+                    }
+                    src={formatName(pokemon.preevolutions[0].sprite)}
+                  />
+                </PreevolutionSprite>
+              </Tooltip>
             )}
           </ImageWrapper>
-          <Banner>
+          <Banner xl={xl}>
             <span>no. {pokemon.num}</span>
             <span>{pokemon.height}m</span>
             <span>{pokemon.weight}kg</span>
             <TypeGroup>
               {pokemon.types.map((type: string) => {
                 return (
-                  <Avatar
-                    sx={{ width: 10, height: 10 }}
-                    alt={type}
-                    key={type}
-                    src={getTypeIcon(type)}
-                  />
+                  <Tooltip title={`${type} type`} key={type}>
+                    <Avatar
+                      sx={{ width: xl ? 15 : 10, height: xl ? 15 : 10 }}
+                      alt={type}
+                      src={getTypeIcon(type)}
+                    />
+                  </Tooltip>
                 );
               })}
             </TypeGroup>
           </Banner>
           <Description>
-            <Ability abilityName={pokemon.abilities.first}></Ability>
+            <Ability xl={xl} abilityName={pokemon.abilities.first}></Ability>
             {pokemon.abilities.second && (
-              <Ability abilityName={pokemon.abilities.second!}></Ability>
+              <Ability
+                xl={xl}
+                abilityName={pokemon.abilities.second!}
+              ></Ability>
             )}
+            {xl && <TypeMatchup types={types} />}
           </Description>
         </Border>
       </CardHolder>
+      {xl && (
+        <Menu
+          direction="right"
+          ariaLabel="Card menu"
+          sx={{
+            position: "absolute",
+            width: "100%",
+            bottom: -30,
+            right: 0,
+          }}
+          icon={<MenuIcon />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+            />
+          ))}
+        </Menu>
+      )}
     </Wrapper>
   );
 };

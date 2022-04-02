@@ -6,10 +6,14 @@ import {
 } from "../GraphQL/codegen-types";
 import { GET_ABILITY_PARTIAL_FUZZY } from "../GraphQL/Queries/AbilityQueries";
 
-const Description = styled.div`
+interface Size {
+  xl?: boolean;
+}
+
+const Description = styled.div<Size>`
   text-align: left;
-  margin-bottom: 4px;
-  font-size: min(2vw, 10px);
+  margin-bottom: ${(props) => (props.xl ? "6px" : "4px")};
+  font-size: ${(props) => (props.xl ? "min(4vw, 13px)" : "min(2vw, 10px)")};
   height: fit-content;
   span:first-child {
     font-weight: bold;
@@ -19,9 +23,10 @@ const Description = styled.div`
 
 interface AbilityProps {
   abilityName: string;
+  xl?: boolean;
 }
 
-const Ability = ({ abilityName }: AbilityProps) => {
+const Ability = ({ abilityName, xl }: AbilityProps) => {
   const { loading, data } = useQuery<
     GetFuzzyAbilityQuery,
     GetFuzzyAbilityQueryVariables
@@ -33,7 +38,7 @@ const Ability = ({ abilityName }: AbilityProps) => {
   const ability = data?.getFuzzyAbility[0];
 
   return (
-    <Description>
+    <Description xl={xl}>
       <span>{ability?.name}</span>
       <span>{ability?.shortDesc}</span>
     </Description>

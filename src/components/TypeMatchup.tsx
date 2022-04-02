@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Avatar, AvatarGroup } from "@mui/material";
+import { Avatar, AvatarGroup, Tooltip } from "@mui/material";
 import styled from "styled-components";
 import getTypeIcon from "../Functions/GetTypeIcon";
 import {
@@ -13,15 +13,23 @@ const Wrapper = styled.div`
   display: flex;
   padding: 5px;
   justify-content: space-around;
+  width: 100%;
 `;
 
 const Grouping = styled.div`
   display: flex;
+  width: 50%;
+  padding: 0 10px;
   flex-direction: column;
-
+  div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
   h3 {
-    font-size: 10px;
+    font-size: min(4vw, 13px);
     margin: 0 0 5px 0;
+    text-align: center;
   }
 `;
 
@@ -44,39 +52,35 @@ const TypeMatchup = (types: TypesProps) => {
     <Wrapper>
       <Grouping>
         <h3>Weakness</h3>
-        <AvatarGroup
-          sx={{ justifyContent: "center" }}
-          max={2 + defenseAgainst?.effectiveTypes.length!}
-        >
+        <div>
           {defenseAgainst?.effectiveTypes.map((type: string) => {
             return (
-              <Avatar
-                sx={{ width: 15, height: 15 }}
-                alt={type}
-                key={type}
-                src={getTypeIcon(type)}
-              />
+              <Tooltip title={`Weak against ${type}`} key={type}>
+                <Avatar
+                  sx={{ width: "min(5vw, 20px)", height: "min(5vw, 20px)" }}
+                  alt={type}
+                  src={getTypeIcon(type)}
+                />
+              </Tooltip>
             );
           })}
-        </AvatarGroup>
+        </div>
       </Grouping>
       <Grouping>
         <h3>Resistance</h3>
-        <AvatarGroup
-          sx={{ justifyContent: "center" }}
-          max={2 + defenseAgainst?.resistedTypes.length!}
-        >
+        <div>
           {defenseAgainst?.resistedTypes.map((type: string) => {
             return (
-              <Avatar
-                sx={{ width: 15, height: 15 }}
-                alt={type}
-                key={type}
-                src={getTypeIcon(type)}
-              />
+              <Tooltip title={`Resistant against ${type}`} key={type}>
+                <Avatar
+                  sx={{ width: "min(5vw, 20px)", height: "min(5vw, 20px)" }}
+                  alt={type}
+                  src={getTypeIcon(type)}
+                />
+              </Tooltip>
             );
           })}
-        </AvatarGroup>
+        </div>
       </Grouping>
     </Wrapper>
   );
