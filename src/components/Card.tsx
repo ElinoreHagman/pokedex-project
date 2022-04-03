@@ -8,22 +8,10 @@ import {
 import styled from "styled-components";
 import getTypeBackground from "../Functions/GetTypeBackground";
 import Ability from "./Ability";
-import {
-  Avatar,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Tooltip,
-} from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import getTypeIcon from "../Functions/GetTypeIcon";
 import getTexture from "../Functions/GetTexture";
 import TypeMatchup from "./TypeMatchup";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import MenuIcon from "@mui/icons-material/Menu";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 interface CardBackground {
   back?: boolean;
@@ -39,12 +27,6 @@ interface TypeTexture {
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-`;
-
-const Menu = styled(SpeedDial)`
-  && button {
-    background-color: #cc0000;
-  }
 `;
 
 const CardHolder = styled.div<CardBackground>`
@@ -222,11 +204,6 @@ const Card = ({ pokemonId, xl }: CardProps) => {
     return string.replace(/'/g, "");
   }
 
-  const actions = [
-    { icon: <SaveIcon sx={{ color: "white" }} />, name: "Save" },
-    { icon: <DeleteIcon sx={{ color: "white" }} />, name: "Remove" },
-  ];
-
   return (
     <Wrapper>
       <CardHolder xl={xl} type={getTexture(pokemon!.types[0])}>
@@ -296,27 +273,6 @@ const Card = ({ pokemonId, xl }: CardProps) => {
           </Description>
         </Border>
       </CardHolder>
-      {xl && (
-        <Menu
-          direction="right"
-          ariaLabel="Card menu"
-          sx={{
-            position: "absolute",
-            width: "100%",
-            bottom: -30,
-            right: 0,
-          }}
-          icon={<MenuIcon />}
-        >
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-            />
-          ))}
-        </Menu>
-      )}
     </Wrapper>
   );
 };

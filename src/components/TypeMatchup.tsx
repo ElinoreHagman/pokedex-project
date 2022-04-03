@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Avatar, AvatarGroup, Tooltip } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import styled from "styled-components";
 import getTypeIcon from "../Functions/GetTypeIcon";
 import {

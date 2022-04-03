@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { store } from "../Redux/Index";
 import { CardCollection } from "./CardCollection";
 import { Search } from "./Search";
 
@@ -16,16 +17,10 @@ type Props = {
 };
 
 const Content = ({ pageIndex }: Props) => {
-  let pokemonList: number[] = [];
-  while (pokemonList.length < 5) {
-    let r = Math.floor(Math.random() * 898) + 1;
-    if (pokemonList.indexOf(r) === -1) pokemonList.push(r);
-  }
-
   return (
     <Wrapper>
       {pageIndex === 0 ? (
-        <CardCollection pokemonList={pokemonList} />
+        <CardCollection pokemonList={store.getState().pokemons} />
       ) : (
         <Search />
       )}
