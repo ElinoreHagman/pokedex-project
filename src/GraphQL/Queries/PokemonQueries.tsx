@@ -54,10 +54,24 @@ const GET_POKEMON_BY_NUMBER = gql`
   ${PokemonAbilitiesFragment}
 `;
 
+const GET_POKEMON_FUZZY = gql`
+  query getFuzzyPokemon($pokemon: String!, $take: Int, $reverse: Boolean) {
+    getFuzzyPokemon(pokemon: $pokemon, take: $take, reverse: $reverse) {
+      species
+      num
+    }
+  }
+`;
+
 const GET_POKEMONS = gql`
   query getAllPokemonSpecies($offset: Int, $take: Int, $reverse: Boolean) {
     getAllPokemonSpecies(take: $take, offset: $offset, reverse: $reverse)
   }
 `;
 
-export { GET_POKEMON_BY_NAME, GET_POKEMON_BY_NUMBER, GET_POKEMONS };
+export {
+  GET_POKEMON_BY_NAME,
+  GET_POKEMON_BY_NUMBER,
+  GET_POKEMONS,
+  GET_POKEMON_FUZZY,
+};

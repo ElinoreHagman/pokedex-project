@@ -188,7 +188,7 @@ const Card = ({ pokemonId, xl }: CardProps) => {
     variables: { number: pokemonId },
   });
 
-  if (loading) return null;
+  if (loading || !data) return null;
   const pokemon = data?.getPokemonByDexNumber!;
 
   const types: TypesEnum[] = pokemon.types?.map(

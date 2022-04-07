@@ -6,6 +6,7 @@ import { CardDetails } from "./CardDetails";
 
 const GridWrapper = styled(Grid)`
   position: relative;
+  justify-content: center;
 `;
 
 interface PokemonListProp {

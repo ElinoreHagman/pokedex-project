@@ -3902,6 +3902,24 @@ export type GetPokemonByDexNumberQueryVariables = Exact<{
 
 export type GetPokemonByDexNumberQuery = { __typename: 'Query', getPokemonByDexNumber: { __typename: 'Pokemon', num: number, species: string, sprite: string, backSprite: string, shinySprite: string, shinyBackSprite: string, types: Array<string>, color: string, evolutionLevel?: string, height: number, weight: number, preevolutions?: Array<{ __typename: 'Pokemon', num: number, species: string, sprite: string, backSprite: string, shinySprite: string, shinyBackSprite: string, types: Array<string> }>, evolutions?: Array<{ __typename: 'Pokemon', num: number, species: string, sprite: string, backSprite: string, shinySprite: string, shinyBackSprite: string, types: Array<string> }>, flavorTexts: Array<{ __typename: 'Flavor', flavor: string }>, gender: { __typename: 'Gender', female: string, male: string }, baseStats: { __typename: 'Stats', hp: number, attack: number, defense: number, specialattack: number, specialdefense: number, speed: number }, abilities: { __typename: 'Abilities', first: string, hidden?: string, second?: string, special?: string } } };
 
+export type GetFuzzyPokemonQueryVariables = Exact<{
+  pokemon: Scalars['String'];
+  take?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type GetFuzzyPokemonQuery = { __typename: 'Query', getFuzzyPokemon: Array<{ __typename: 'Pokemon', species: string, num: number }> };
+
+export type GetFuzzyPokemonsQueryVariables = Exact<{
+  pokemon: Scalars['String'];
+  take?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type GetFuzzyPokemonsQuery = { __typename: 'Query', getFuzzyPokemon: Array<{ __typename: 'Pokemon', species: string }> };
+
 export type GetAllPokemonSpeciesQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
@@ -3929,6 +3947,8 @@ export const namedOperations = {
     getFuzzyMoveWithFullData: 'getFuzzyMoveWithFullData',
     getPokemon: 'getPokemon',
     getPokemonByDexNumber: 'getPokemonByDexNumber',
+    getFuzzyPokemon: 'getFuzzyPokemon',
+    getFuzzyPokemons: 'getFuzzyPokemons',
     getAllPokemonSpecies: 'getAllPokemonSpecies',
     getTypeMatchup: 'getTypeMatchup'
   },
