@@ -4,7 +4,6 @@ import {
   GetFuzzyPokemonQueryVariables,
 } from "../GraphQL/codegen-types";
 import { GET_POKEMON_FUZZY } from "../GraphQL/Queries/PokemonQueries";
-import Card from "./Card";
 import { CardCollection } from "./CardCollection";
 
 interface pokemonString {
@@ -15,7 +14,7 @@ export const SearchResult = (pokemonName: pokemonString) => {
     GetFuzzyPokemonQuery,
     GetFuzzyPokemonQueryVariables
   >(GET_POKEMON_FUZZY, {
-    variables: { pokemon: pokemonName.pokemonName, take: 4 },
+    variables: { pokemon: pokemonName.pokemonName, take: 1 },
   });
 
   if (loading || !data) return null;

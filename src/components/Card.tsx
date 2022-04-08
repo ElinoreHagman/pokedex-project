@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 import getTypeBackground from "../Functions/GetTypeBackground";
 import Ability from "./Ability";
-import { Avatar, Tooltip } from "@mui/material";
+import { Avatar, Chip, Tooltip } from "@mui/material";
 import getTypeIcon from "../Functions/GetTypeIcon";
 import getTexture from "../Functions/GetTexture";
 import TypeMatchup from "./TypeMatchup";
@@ -27,6 +27,14 @@ interface TypeTexture {
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+`;
+
+const MoreInfo = styled(Chip)`
+  && {
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 60%;
+  }
 `;
 
 const CardHolder = styled.div<CardBackground>`
@@ -56,6 +64,7 @@ const Border = styled.div<Size>`
   height: 100%;
   border: 5px solid #ffde00;
   padding: ${(props) => (props.xl ? "5px" : "0")};
+  overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -270,6 +279,13 @@ const Card = ({ pokemonId, xl }: CardProps) => {
               ></Ability>
             )}
             {xl && <TypeMatchup types={types} />}
+            {!xl && (
+              <MoreInfo
+                label="Click for more info"
+                size="small"
+                variant="filled"
+              />
+            )}
           </Description>
         </Border>
       </CardHolder>

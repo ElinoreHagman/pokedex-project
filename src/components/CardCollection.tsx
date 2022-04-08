@@ -1,12 +1,25 @@
-import { Grid } from "@mui/material";
+import { Alert, Fade, Grid } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
 import { CardDetails } from "./CardDetails";
 
 const GridWrapper = styled(Grid)`
-  position: relative;
-  justify-content: center;
+  && {
+    position: relative;
+    justify-content: center;
+  }
+`;
+
+const AlertInfo = styled(Alert)`
+  && {
+    position: fixed;
+    bottom: 52px;
+    z-index: 10;
+    width: 100%;
+    border-radius: 0px;
+    justify-content: center;
+  }
 `;
 
 interface PokemonListProp {
@@ -15,16 +28,33 @@ interface PokemonListProp {
 
 export const CardCollection = ({ pokemonList }: PokemonListProp) => {
   const [open, setOpen] = React.useState(false);
+  const [fade, setFade] = React.useState(false);
   const [activePokemon, setActivePokemon] = React.useState(0);
+  const [bannerOpen, setBannerOpen] = React.useState(false);
 
   const handleOpen = function (pokemonId: number) {
     setOpen(true);
     setActivePokemon(pokemonId);
   };
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setOpen(false);
+    setBannerOpen(true);
+    setFade(true);
+    setTimeout(function () {
+      setFade(false);
+    }, 5000);
+  };
 
   return (
     <>
+      {bannerOpen && (
+        <Fade in={fade} timeout={2000}>
+          <AlertInfo variant="filled" severity="info">
+            Updated your Pokémon deck!
+          </AlertInfo>
+        </Fade>
+      )}
       <CardDetails
         open={open}
         setOpen={setOpen}

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   min-width: 90%;
   flex: auto;
   margin: auto;
-  padding: 20px 5px;
+  padding: 20px 0px;
   z-index: 2;
 `;
 

@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { Modal, SpeedDial, SpeedDialAction } from "@mui/material";
+import { Modal, SpeedDial, SpeedDialAction, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { store } from "../Redux/Index";
@@ -7,6 +7,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import MenuIcon from "@mui/icons-material/Menu";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styled from "styled-components";
+import pokemonExistsInDeck from "../Functions/PokemonExistsInDeck";
 
 const style = {
   position: "absolute",
@@ -39,9 +40,26 @@ export const CardDetails = (props: SimpleDialogProps) => {
   };
 
   const actions = [
-    { icon: <SaveIcon sx={{ color: "white" }} />, name: "Save" },
-    { icon: <DeleteIcon sx={{ color: "white" }} />, name: "Remove" },
+    {
+      icon: <SaveIcon sx={{ color: "white" }} />,
+      name: "Save",
+      tooltip: "Save to your deck",
+    },
+    {
+      icon: <DeleteIcon sx={{ color: "white" }} />,
+      name: "Remove",
+      tooltip: "Remove from your deck",
+    },
   ];
+
+  function ShouldBeVisible(action: string) {
+    if (action === "Save") {
+      return !pokemonExistsInDeck(props.activePokemon);
+    }
+    if (action === "Remove") {
+      return pokemonExistsInDeck(props.activePokemon);
+    }
+  }
 
   function HandleCard(action: string) {
     store.dispatch({
@@ -71,14 +89,17 @@ export const CardDetails = (props: SimpleDialogProps) => {
           }}
           icon={<MenuIcon />}
         >
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={() => HandleCard(action.name)}
-            />
-          ))}
+          {actions.map(
+            (action) =>
+              ShouldBeVisible(action.name) && (
+                <SpeedDialAction
+                  key={action.name}
+                  icon={action.icon}
+                  tooltipTitle={action.tooltip}
+                  onClick={() => HandleCard(action.name)}
+                />
+              )
+          )}
         </Menu>
       </Box>
     </Modal>
