@@ -16,8 +16,9 @@ const AlertInfo = styled(Alert)`
     position: fixed;
     bottom: 52px;
     z-index: 10;
-    width: 100%;
-    border-radius: 0px;
+    left: 50%;
+    min-width: 300px;
+    transform: translate(-50%);
     justify-content: center;
   }
 `;
