@@ -1,12 +1,11 @@
 # Pokemon card collection
 
-I wanted to get more familiar with Typescript and GraphQL so I found a fun little Pokémon API that I could play around with.
+I wanted to get more familiar with Typescript and GraphQL so I found a fun little Pokémon API that I could play around with. I used [MUI](https://mui.com/) for most of the components.
 
 ### Stack
 
 - React
 - TypeScript
-- Node
 - GraphQL
 - Apollo Client
 
